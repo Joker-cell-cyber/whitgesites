@@ -1,0 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --yfc-background: 40 38% 97%;
+    --yfc-foreground: 24 10% 10%;
+    --yfc-card: 0 0% 100%;
+    --yfc-card-foreground: 24 10% 10%;
+    --yfc-popover: 0 0% 100%;
+    --yfc-popover-foreground: 24 10% 10%;
+    --yfc-primary: 35 54% 58%;
+    --yfc-primary-foreground: 24 9% 10%;
+    --yfc-secondary: 200 13% 95%;
+    --yfc-secondary-foreground: 24 8% 20%;
+    --yfc-muted: 210 20% 98%;
+    --yfc-muted-foreground: 24 5% 45%;
+    --yfc-accent: 200 13% 95%;
+    --yfc-accent-foreground: 24 8% 20%;
+    --yfc-destructive: 0 84% 60%;
+    --yfc-destructive-foreground: 0 0% 100%;
+    --yfc-border: 20 5% 90%;
+    --yfc-input: 20 5% 90%;
+    --yfc-ring: 35 54% 58%;
+    --yfc-radius: 0.25rem;
+
+    --background: var(--yfc-background);
+    --foreground: var(--yfc-foreground);
+    --card: var(--yfc-card);
+    --card-foreground: var(--yfc-card-foreground);
+    --popover: var(--yfc-popover);
+    --popover-foreground: var(--yfc-popover-foreground);
+    --primary: var(--yfc-primary);
+    --primary-foreground: var(--yfc-primary-foreground);
+    --secondary: var(--yfc-secondary);
+    --secondary-foreground: var(--yfc-secondary-foreground);
+    --muted: var(--yfc-muted);
+    --muted-foreground: var(--yfc-muted-foreground);
+    --accent: var(--yfc-accent);
+    --accent-foreground: var(--yfc-accent-foreground);
+    --destructive: var(--yfc-destructive);
+    --destructive-foreground: var(--yfc-destructive-foreground);
+    --border: var(--yfc-border);
+    --input: var(--yfc-input);
+    --ring: var(--yfc-ring);
+    --radius: var(--yfc-radius);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#faf7f2] text-[#1a1814];
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s forwards;
+  }
+  
+  .yfc-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#C8AA6E] via-[#D4BC8B] to-[#E0CC9B];
+  }
+  
+  .yfc-bg-gradient {
+    @apply bg-gradient-to-r from-[#C8AA6E] to-[#D4BC8B];
+  }
+  
+  .yfc-bg-gradient-secondary {
+    @apply bg-gradient-to-r from-[#EBE7E0] to-[#F5F3F0];
+  }
+  
+  .animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out forwards;
+  }
+  
+  .animate-draw-line-delay {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 1s forwards;
+  }
+  
+  .animate-draw-line-delay-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 2s forwards;
+  }
+  
+  .animate-draw-line-delay-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 3s forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+  
+  .animate-fade-in-down {
+    animation: fade-in-down 1s ease-out forwards;
+  }
+  
+  .yfc-glass-card {
+    @apply backdrop-blur-md bg-white border border-[#E8E0D5] rounded-sm shadow-sm;
+  }
+  
+  .yfc-button-primary {
+    @apply bg-[#C8AA6E] hover:bg-[#D4BC8B] text-white font-medium px-6 py-2 rounded-sm transition-all shadow-sm hover:shadow hover:translate-y-[-2px];
+  }
+  
+  .yfc-button-secondary {
+    @apply bg-transparent border border-[#C8AA6E] text-[#C8AA6E] hover:bg-[#C8AA6E]/5 font-medium px-6 py-2 rounded-sm transition-all hover:translate-y-[-2px];
+  }
+  
+  .yfc-section {
+    @apply relative py-16 px-4 sm:px-6 md:px-8;
+  }
+  
+  .yfc-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .yfc-card {
+    @apply bg-white p-6 border border-[#E8E0D5] rounded-sm shadow-sm hover:shadow transition-all;
+  }
+  
+  .yfc-divider {
+    @apply h-px w-full bg-[#E8E0D5] my-8;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(200, 170, 110, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(200, 170, 110, 0.4);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Personnalisation de la barre de défilement */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f3f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8AA6E;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b99a5c;
+}
+
+::selection {
+  background-color: rgba(255, 50, 142, 0.3);
+  color: white;
+}
+
+/* Assurer que les boutons et les liens sont cliquables */
+button, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Améliorer la réactivité des éléments interactifs */
+button:active, a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+/* Assurer que les éléments de la FAQ sont cliquables */
+#faq button {
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}

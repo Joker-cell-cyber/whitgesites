@@ -1,0 +1,312 @@
+@import "tailwindcss";
+
+@theme {
+  /* RankApex refined color palette */
+  --color-rank-emerald-50: #edfcf6;
+  --color-rank-emerald-100: #d1f7e7;
+  --color-rank-emerald-200: #a8edd2;
+  --color-rank-emerald-300: #6ee0b3;
+  --color-rank-emerald-400: #36ce90;
+  --color-rank-emerald-500: #1cb678;
+  --color-rank-emerald-600: #0f9560;
+  --color-rank-emerald-700: #117351;
+  --color-rank-emerald-800: #0f5b42;
+  --color-rank-emerald-900: #0c4b37;
+  
+  --color-rank-orange-50: #fff8ed;
+  --color-rank-orange-100: #ffefd3;
+  --color-rank-orange-200: #ffdca6;
+  --color-rank-orange-300: #ffc46d;
+  --color-rank-orange-400: #ff9e30;
+  --color-rank-orange-500: #ff7b10;
+  --color-rank-orange-600: #f15b04;
+  --color-rank-orange-700: #c83e06;
+  --color-rank-orange-800: #a0320f;
+  --color-rank-orange-900: #832b11;
+  
+  /* Base colors */
+  --color-background: #080f0d;
+  --color-foreground: #f9f9f9;
+  --color-card-bg: #111c1a;
+  --color-card-accent: #1b2a26;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', 'Poppins', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-image: radial-gradient(circle at 20% 100%, rgba(12, 75, 55, 0.15) 0%, transparent 40%), 
+                    radial-gradient(circle at 80% 20%, rgba(242, 95, 14, 0.1) 0%, transparent 30%);
+}
+
+/* Animation keyframes */
+@keyframes rise {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse-subtle {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Animation classes */
+.animate-rise {
+  animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite;
+}
+
+.animate-orbit {
+  animation: orbit 12s linear infinite;
+}
+
+.animate-dash {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  @apply bg-gradient-to-r from-rank-emerald-400 to-rank-orange-400 bg-clip-text text-transparent;
+}
+
+/* Button effects */
+.button-apex {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.button-apex::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--color-rank-emerald-600), var(--color-rank-orange-600));
+  z-index: -2;
+}
+
+.button-apex::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, var(--color-rank-emerald-500), var(--color-rank-orange-500));
+  z-index: -1;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button-apex:hover::after {
+  opacity: 0;
+}
+
+.button-apex:focus {
+  box-shadow: 0 0 0 3px rgba(12, 75, 55, 0.4);
+}
+
+/* Card effects */
+.card-apex {
+  position: relative;
+  background: var(--color-card-bg);
+  border: 1px solid rgba(28, 182, 120, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-apex::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-rank-emerald-500), var(--color-rank-orange-500));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-apex:hover {
+  transform: translateY(-5px);
+  border-color: rgba(28, 182, 120, 0.2);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+.card-apex:hover::before {
+  transform: scaleX(1);
+}
+
+/* Glass effect */
+.glass-apex {
+  background: rgba(17, 28, 26, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(28, 182, 120, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Typography classes */
+.heading-apex {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.subheading-apex {
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+/* Game-inspired UI elements */
+.rank-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--color-card-accent), var(--color-card-bg));
+  border: 1px solid rgba(28, 182, 120, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.rank-badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    rgba(28, 182, 120, 0) 0%, 
+    rgba(28, 182, 120, 0.05) 25%, 
+    rgba(28, 182, 120, 0.1) 50%, 
+    rgba(28, 182, 120, 0.05) 75%, 
+    rgba(28, 182, 120, 0) 100%
+  );
+  background-size: 200% 200%;
+  animation: shimmer 3s infinite;
+}
+
+.rank-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-rank-emerald-500), var(--color-rank-orange-500));
+  margin-right: 0.75rem;
+}
+
+.rank-icon::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: 50%;
+  background: var(--color-card-bg);
+  z-index: 0;
+}
+
+.rank-icon span {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-rank-emerald-400);
+}
+
+/* Game-themed progress bar */
+.progress-apex {
+  position: relative;
+  height: 6px;
+  background: var(--color-card-accent);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-apex::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-rank-emerald-500), var(--color-rank-orange-500));
+  border-radius: 3px;
+}
+
+/* Custom section dividers */
+.divider-apex {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(28, 182, 120, 0.2) 50%, 
+    transparent 100%
+  );
+}
+
+/* Responsive classes */
+@media (max-width: 640px) {
+  .heading-apex {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+  
+  .subheading-apex {
+    font-size: clamp(1rem, 5vw, 1.25rem);
+  }
+}
+
+/* Background decorations */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(28, 182, 120, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 182, 120, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}

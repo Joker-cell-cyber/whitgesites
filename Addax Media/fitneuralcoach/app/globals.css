@@ -1,0 +1,321 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors */
+    --color-primary-light: 59 255 186; /* #3BFFBA */
+    --color-primary: 0 245 160; /* #00F5A0 */
+    --color-primary-dark: 0 212 133; /* #00D485 */
+    
+    --color-secondary-light: 54 167 255; /* #36A7FF */
+    --color-secondary: 0 149 255; /* #0095FF */
+    --color-secondary-dark: 0 119 212; /* #0077D4 */
+    
+    --color-accent-light: 255 71 185; /* #FF47B9 */
+    --color-accent: 255 0 168; /* #FF00A8 */
+    --color-accent-dark: 204 0 134; /* #CC0086 */
+    
+    --color-neutral-darkest: 10 12 16; /* #0A0C10 */
+    --color-neutral-darker: 18 22 32; /* #121620 */
+    --color-neutral-dark: 30 37 50; /* #1E2532 */
+    --color-neutral-medium: 51 65 85; /* #334155 */
+    --color-neutral-light: 148 163 184; /* #94A3B8 */
+
+    /* Shadcn Variables */
+    --background: var(--color-neutral-darkest);
+    --foreground: 0 0% 98%;
+    --card: var(--color-neutral-darker);
+    --card-foreground: 0 0% 98%;
+    --popover: var(--color-neutral-darker);
+    --popover-foreground: 0 0% 98%;
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-neutral-darkest);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: 0 0% 98%;
+    --muted: var(--color-neutral-dark);
+    --muted-foreground: 0 0% 63.9%;
+    --accent: var(--color-accent);
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: var(--color-neutral-dark);
+    --input: var(--color-neutral-dark);
+    --ring: var(--color-primary);
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#0A0C10] text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#3BFFBA] via-[#00F5A0] to-[#0095FF];
+  }
+  
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0095FF] to-[#FF00A8];
+  }
+  
+  .bg-gradient-primary {
+    @apply bg-gradient-to-r from-[#00F5A0] to-[#0095FF];
+  }
+  
+  .bg-gradient-accent {
+    @apply bg-gradient-to-r from-[#0095FF] to-[#FF00A8];
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s forwards;
+  }
+  
+  .animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out forwards;
+  }
+  
+  .animate-draw-line-delay {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 1s forwards;
+  }
+  
+  .animate-draw-line-delay-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 2s forwards;
+  }
+  
+  .animate-draw-line-delay-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 3s forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 1s ease-out forwards;
+  }
+
+  .hero-glow {
+    @apply absolute pointer-events-none inset-0 overflow-hidden;
+    background: radial-gradient(circle at center, rgba(0, 245, 160, 0.15) 0%, transparent 70%);
+    z-index: 0;
+  }
+  
+  .border-gradient {
+    position: relative;
+    border-radius: 0.75rem;
+    background: linear-gradient(rgb(18, 22, 32), rgb(18, 22, 32)) padding-box,
+                linear-gradient(to right, rgb(0, 245, 160), rgb(0, 149, 255)) border-box;
+    border: 1px solid transparent;
+  }
+  
+  .glass-card {
+    @apply bg-[#121620]/60 backdrop-blur-lg rounded-xl border border-white/10;
+  }
+  
+  .button-primary {
+    @apply bg-gradient-to-r from-[#00F5A0] to-[#0095FF] hover:translate-y-[-2px] transition-all px-6 py-2.5 rounded-full font-medium text-[#0A0C10] shadow-lg shadow-[#00F5A0]/25 hover:shadow-xl hover:shadow-[#00F5A0]/30;
+  }
+  
+  .button-secondary {
+    @apply bg-[#121620] border border-[#00F5A0]/30 hover:border-[#00F5A0]/60 px-6 py-2.5 rounded-full font-medium text-white transition-all hover:translate-y-[-2px];
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:translate-y-[-4px] hover:shadow-lg;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 245, 160, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 245, 160, 0.6);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animate-text-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121620;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00D485;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00F5A0;
+}
+
+/* Selection style */
+::selection {
+  background-color: #00F5A0;
+  color: #0A0C10;
+}
+
+/* Assurer que les boutons et les liens sont cliquables */
+button, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Améliorer la réactivité des éléments interactifs */
+button:active, a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+/* Assurer que les éléments de la FAQ sont cliquables */
+#faq button {
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}

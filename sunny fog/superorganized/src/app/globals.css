@@ -1,0 +1,206 @@
+@import "tailwindcss";
+
+@theme {
+  /* Notion-inspired color palette */
+  --color-notion-black-50: #fafafa;
+  --color-notion-black-100: #f0f0f0;
+  --color-notion-black-200: #e0e0e0;
+  --color-notion-black-300: #c7c7c7;
+  --color-notion-black-400: #909090;
+  --color-notion-black-500: #6b6b6b;
+  --color-notion-black-600: #474747;
+  --color-notion-black-700: #2c2c2c;
+  --color-notion-black-800: #141414;
+  --color-notion-black-900: #000000;
+
+  --color-notion-accent-50: #f0f4ff;
+  --color-notion-accent-100: #e0e9ff;
+  --color-notion-accent-200: #c7d8ff;
+  --color-notion-accent-300: #a3beff;
+  --color-notion-accent-400: #7a9bff;
+  --color-notion-accent-500: #5c7cff;
+  --color-notion-accent-600: #4562e6;
+  --color-notion-accent-700: #354bcc;
+  --color-notion-accent-800: #2c3ead;
+  --color-notion-accent-900: #1e2a80;
+  
+  /* Base colors */
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-card-bg: #ffffff;
+  --color-border: #000000;
+  --color-border-light: #e0e0e0;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
+  50% { box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.15); }
+  100% { box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1); }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 15s linear infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 2s ease-in-out infinite;
+}
+
+/* Hand-drawn aesthetic classes */
+.hand-drawn {
+  border: 3px solid var(--color-foreground);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--color-foreground);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.hand-drawn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--color-foreground);
+}
+
+.hand-drawn-border {
+  border: 2px solid var(--color-foreground);
+  border-radius: 6px;
+}
+
+.hand-drawn-light {
+  border: 2px solid var(--color-foreground);
+  border-radius: 8px;
+  box-shadow: 2px 2px 0 var(--color-foreground);
+  position: relative;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  @apply bg-gradient-to-r from-notion-accent-600 to-notion-accent-400 bg-clip-text text-transparent;
+}
+
+/* Button effects */
+.button-hand-drawn {
+  border: 2px solid var(--color-foreground);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 var(--color-foreground);
+  transition: all 0.2s ease;
+  position: relative;
+  background: white;
+  transform-origin: center;
+}
+
+.button-hand-drawn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--color-foreground);
+}
+
+.button-hand-drawn:active {
+  transform: translate(0px, 0px);
+  box-shadow: 1px 1px 0 var(--color-foreground);
+}
+
+/* Card effects */
+.card-hand-drawn {
+  border: 3px solid var(--color-foreground);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 var(--color-foreground);
+  transition: all 0.3s ease;
+  background: var(--color-card-bg);
+  position: relative;
+}
+
+.card-hand-drawn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--color-foreground);
+}
+
+/* Responsive typography helpers */
+.responsive-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.responsive-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Hand-drawn icons and elements */
+.hand-drawn-accent {
+  background-color: rgba(92, 124, 255, 0.1);
+  border-radius: 6px;
+  padding: 2px 8px;
+  position: relative;
+  display: inline-block;
+}
+
+.squiggle-underline {
+  position: relative;
+}
+
+.squiggle-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 4px;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='8' viewBox='0 0 100 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4.75C3.5 2.17 5.83333 2.17 8 4.75C10.1667 7.25 12.5 7.25 15 4.75C17.5 2.17 19.8333 2.17 22 4.75C24.1667 7.25 26.5 7.25 29 4.75C31.5 2.17 33.8333 2.17 36 4.75C38.1667 7.25 40.5 7.25 43 4.75C45.5 2.17 47.8333 2.17 50 4.75C52.1667 7.25 54.5 7.25 57 4.75C59.5 2.17 61.8333 2.17 64 4.75C66.1667 7.25 68.5 7.25 71 4.75C73.5 2.17 75.8333 2.17 78 4.75C80.1667 7.25 82.5 7.25 85 4.75C87.5 2.17 89.8333 2.17 92 4.75C94.1667 7.25 96.5 7.25 99 4.75' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 100px 8px;
+}

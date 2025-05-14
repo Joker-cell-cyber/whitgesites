@@ -1,0 +1,88 @@
+/* GLOBAL FORM STYLING OVERRIDE */
+html body input,
+html body textarea, 
+html body select,
+html body option,
+html body .select-trigger, 
+html body .select-content, 
+html body .select-item {
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+  caret-color: black !important;
+}
+
+/* Très haute spécificité pour les inputs */
+html body input[type],
+html body input[class],
+html body input[id],
+html body input[name] {
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+  caret-color: black !important;
+}
+
+/* Surcharger les styles du navigateur pour l'autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Placeholder styling */
+html body input::placeholder, 
+html body textarea::placeholder {
+  color: #6B7280 !important;
+  opacity: 1 !important;
+}
+
+/* Assurer que les options des menus déroulants soient visibles */
+html body option {
+  color: black !important;
+  background-color: white !important;
+}
+
+/* Target specific component classes */
+.bg-white input,
+.bg-white textarea,
+.bg-white select,
+input.bg-white,
+textarea.bg-white,
+select.bg-white {
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+}
+
+/* Fix for dropdown text color */
+option {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+/* Force all form elements to use black text */
+input, textarea, select, option, 
+.select-trigger, .select-content, .select-item {
+  color: black !important;
+  -webkit-text-fill-color: black !important;
+}
+
+/* Override any browser defaults */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: black !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+} 

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Grid -->
+  <g opacity="0.15" stroke="#FFFFFF">
+    <path d="M0 125 H800 M0 250 H800 M0 375 H800" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M200 0 V500 M400 0 V500 M600 0 V500" stroke-width="1" stroke-dasharray="4 4"/>
+  </g>
+  
+  <!-- Glowing Orbs -->
+  <circle cx="200" cy="180" r="80" fill="url(#orb-gradient-1)" opacity="0.2" filter="blur(20px)"/>
+  <circle cx="600" cy="320" r="100" fill="url(#orb-gradient-2)" opacity="0.2" filter="blur(30px)"/>
+  
+  <!-- Isometric Platform Base -->
+  <path d="M400 300 L250 225 L400 150 L550 225 Z" fill="#0F172A" stroke="url(#teal-emerald)" stroke-width="2"/>
+  
+  <!-- Central Tower -->
+  <g>
+    <!-- Tower Base -->
+    <path d="M400 150 L450 175 L450 225 L400 200 Z" fill="#0A1829" stroke="#14B8A6" stroke-width="1.5"/>
+    <path d="M400 150 L350 175 L350 225 L400 200 Z" fill="#091627" stroke="#14B8A6" stroke-width="1.5"/>
+    <path d="M400 200 L350 225 L400 250 L450 225 Z" fill="#081425" stroke="#14B8A6" stroke-width="1.5"/>
+    
+    <!-- Tower Top -->
+    <path d="M400 110 L430 125 L430 150 L400 135 Z" fill="#0E1628" stroke="#10B981" stroke-width="1.5"/>
+    <path d="M400 110 L370 125 L370 150 L400 135 Z" fill="#0C1526" stroke="#10B981" stroke-width="1.5"/>
+    <path d="M400 135 L370 150 L400 165 L430 150 Z" fill="#0A1324" stroke="#10B981" stroke-width="1.5"/>
+    
+    <!-- Tower Connection -->
+    <path d="M400 165 L410 170 L410 175 L400 170 Z" fill="#14B8A6"/>
+    <path d="M400 165 L390 170 L390 175 L400 170 Z" fill="#10B981"/>
+    <path d="M400 170 L390 175 L400 180 L410 175 Z" fill="#0F766E"/>
+    
+    <!-- Pulsing Light -->
+    <circle cx="400" cy="120" r="10" fill="#FFFFFF" opacity="0.8" class="pulsing-light"/>
+  </g>
+  
+  <!-- Connected Nodes -->
+  <g class="node node-1">
+    <path d="M250 225 L280 240 L280 270 L250 255 Z" fill="#0D1B29" stroke="#14B8A6" stroke-width="1.5"/>
+    <circle cx="265" cy="247" r="10" fill="#14B8A6" opacity="0.8"/>
+    <!-- Data Stream -->
+    <path d="M280 255 C330 265, 360 250, 390 230" stroke="url(#teal-gradient)" stroke-width="1.5" stroke-dasharray="3 2" class="data-stream"/>
+  </g>
+  
+  <g class="node node-2">
+    <path d="M550 225 L520 240 L520 270 L550 255 Z" fill="#0D1B29" stroke="#10B981" stroke-width="1.5"/>
+    <circle cx="535" cy="247" r="10" fill="#10B981" opacity="0.8"/>
+    <!-- Data Stream -->
+    <path d="M520 255 C470 265, 440 250, 410 230" stroke="url(#emerald-gradient)" stroke-width="1.5" stroke-dasharray="3 2" class="data-stream"/>
+  </g>
+  
+  <g class="node node-3">
+    <path d="M400 300 L430 315 L430 345 L400 330 Z" fill="#0D1B29" stroke="#14B8A6" stroke-width="1.5"/>
+    <circle cx="415" cy="322" r="10" fill="#14B8A6" opacity="0.8"/>
+    <!-- Data Stream -->
+    <path d="M415 312 C410 290, 405 270, 410 250" stroke="url(#teal-gradient)" stroke-width="1.5" stroke-dasharray="3 2" class="data-stream"/>
+  </g>
+  
+  <!-- Floating Elements -->
+  <g class="floating-element" style="animation-delay: 0s">
+    <path d="M320 180 L340 190 L340 200 L320 190 Z" fill="#14B8A6" opacity="0.9"/>
+  </g>
+  
+  <g class="floating-element" style="animation-delay: 1s">
+    <path d="M480 180 L460 190 L460 200 L480 190 Z" fill="#10B981" opacity="0.9"/>
+  </g>
+  
+  <g class="floating-element" style="animation-delay: 2s">
+    <circle cx="400" cy="220" r="5" fill="#FFFFFF" opacity="0.8"/>
+  </g>
+  
+  <!-- Digital Particles -->
+  <g class="particles">
+    <circle cx="300" cy="200" r="2" fill="#14B8A6" class="particle" style="animation-delay: 0s"/>
+    <circle cx="350" cy="150" r="2" fill="#10B981" class="particle" style="animation-delay: 0.5s"/>
+    <circle cx="450" cy="150" r="2" fill="#14B8A6" class="particle" style="animation-delay: 1s"/>
+    <circle cx="500" cy="200" r="2" fill="#10B981" class="particle" style="animation-delay: 1.5s"/>
+    <circle cx="350" cy="250" r="2" fill="#14B8A6" class="particle" style="animation-delay: 2s"/>
+    <circle cx="450" cy="250" r="2" fill="#10B981" class="particle" style="animation-delay: 2.5s"/>
+  </g>
+  
+  <!-- Outer Rings -->
+  <circle cx="400" cy="200" r="120" stroke="url(#teal-gradient)" stroke-width="1" opacity="0.3" class="ring ring-1"/>
+  <circle cx="400" cy="200" r="150" stroke="url(#emerald-gradient)" stroke-width="1" opacity="0.2" class="ring ring-2"/>
+  
+  <!-- Gradients and Animations -->
+  <defs>
+    <linearGradient id="teal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    
+    <linearGradient id="emerald-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    
+    <linearGradient id="teal-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    
+    <radialGradient id="orb-gradient-1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#14B8A6" stop-opacity="0"/>
+    </radialGradient>
+    
+    <radialGradient id="orb-gradient-2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <style>
+    .ring {
+      animation: rotate 20s linear infinite;
+      transform-origin: 400px 200px;
+      opacity: 0;
+    }
+    
+    .ring-1 {
+      animation: rotate 20s linear infinite, pulse 6s ease-in-out infinite;
+    }
+    
+    .ring-2 {
+      animation: rotate-reverse 30s linear infinite, pulse 8s ease-in-out infinite 1s;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    @keyframes rotate-reverse {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+    
+    @keyframes pulse {
+      0% { opacity: 0.1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 0.1; }
+    }
+    
+    .pulsing-light {
+      animation: glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes glow {
+      0% { opacity: 0.3; r: 8; }
+      50% { opacity: 0.9; r: 12; }
+      100% { opacity: 0.3; r: 8; }
+    }
+    
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+    
+    .particle {
+      animation: move-particle 10s linear infinite;
+    }
+    
+    @keyframes move-particle {
+      0% { transform: translate(0, 0); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translate(var(--tx, 100px), var(--ty, -100px)); opacity: 0; }
+    }
+    
+    .data-stream {
+      animation: dash 3s linear infinite;
+      stroke-dashoffset: 0;
+    }
+    
+    @keyframes dash {
+      to { stroke-dashoffset: 20; }
+    }
+    
+    .node {
+      animation: node-pulse 4s ease-in-out infinite;
+    }
+    
+    .node-1 {
+      animation-delay: 0s;
+    }
+    
+    .node-2 {
+      animation-delay: 1.3s;
+    }
+    
+    .node-3 {
+      animation-delay: 2.6s;
+    }
+    
+    @keyframes node-pulse {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</svg> 

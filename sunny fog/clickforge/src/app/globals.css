@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+@theme {
+  /* CutYourVid color palette */
+  --color-vid-red-50: #fff1f0;
+  --color-vid-red-100: #ffe0de;
+  --color-vid-red-200: #ffc5c1;
+  --color-vid-red-300: #ff9f98;
+  --color-vid-red-400: #ff7268;
+  --color-vid-red-500: #ff4942;
+  --color-vid-red-600: #ff2a22;
+  --color-vid-red-700: #e01b13;
+  --color-vid-red-800: #b8170f;
+  --color-vid-red-900: #971712;
+
+  --color-vid-orange-50: #fff8e6;
+  --color-vid-orange-100: #ffedbf;
+  --color-vid-orange-200: #ffe194;
+  --color-vid-orange-300: #ffd466;
+  --color-vid-orange-400: #ffca43;
+  --color-vid-orange-500: #ffbe1f;
+  --color-vid-orange-600: #f0a600;
+  --color-vid-orange-700: #c68700;
+  --color-vid-orange-800: #a06900;
+  --color-vid-orange-900: #825400;
+  
+  /* Base colors */
+  --color-background: #121212;
+  --color-foreground: #f2f2f2;
+  --color-card-bg: #1e1e1e;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 6s ease infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 15s linear infinite;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(to right, rgb(var(--clickforge-blue)), rgb(var(--clickforge-purple)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button effects */
+.button-glow {
+  box-shadow: 0 0 15px rgba(var(--clickforge-blue), 0.5);
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 20px rgba(var(--clickforge-blue), 0.7);
+}
+
+/* Card effects */
+.card-hover {
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--clickforge-blue), 0.3);
+  box-shadow: 0 10px 25px -5px rgba(var(--clickforge-blue), 0.2);
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(16, 16, 16, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(var(--clickforge-blue), 0.1);
+}
+
+/* Responsive typography helpers */
+.responsive-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.responsive-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  
+  /* New brand colors for landing page builder */
+  --clickforge-blue: 37, 99, 235;
+  --clickforge-purple: 124, 58, 237;
+  --clickforge-cyan: 14, 165, 233;
+  --clickforge-indigo: 79, 70, 229;
+}
+
+@keyframes float-delay {
+  0%, 100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-6deg);
+  }
+}
+
+.animate-float-delay {
+  animation: float-delay 7s ease-in-out infinite;
+}

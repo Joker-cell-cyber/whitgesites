@@ -1,0 +1,78 @@
+﻿@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+@theme {
+  /* Cyberpunk Neon Palette */
+  --neon-purple: #6f00ff;
+  --neon-blue: #00ffff;
+  --neon-pink: #ff1493;
+  --neon-green: #00ff66;
+  --neon-yellow: #ffff00;
+  
+  /* Dark Background Variations */
+  --cyber-black: #080010;
+  --cyber-dark: #090418;
+  --cyber-deep: #0b0b1e;
+  
+  /* Stream Components */
+  --twitch-purple: #6441A4;
+  --kick-teal: #00ffff;
+  --dlive-yellow: #FFE100;
+  --discord-blue: #5865F2;
+  
+  /* Base UI */
+  --color-background: var(--cyber-black);
+  --color-foreground: #f2f2f2;
+  --color-card-bg: var(--cyber-deep);
+}
+
+/* Essential Layout */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-wrapper main {
+  flex: 1 0 auto;
+  padding-top: 64px;
+}
+
+/* Navbar */
+.navbar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+/* Grid Background */
+.cyber-grid-bg {
+  background-color: var(--cyber-dark);
+  background-image: 
+    linear-gradient(rgba(11, 11, 30, 0.8) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 11, 30, 0.8) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+  z-index: 999;
+}

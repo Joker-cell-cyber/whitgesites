@@ -1,0 +1,78 @@
+'use client';
+
+import { Metadata } from 'next';
+import { LegalShell } from '@/app/components/legal/legal-shell';
+
+export const metadata: Metadata = {
+  title: 'Mentions légales',
+  description: 'Mentions légales de SeducIA',
+};
+
+export const legalContent = {
+  title: "Mentions légales",
+  lastUpdated: "25 mars 2024",
+  content: [
+    {
+      title: "1. Éditeur du site",
+      text: "Le site internet seduc-ia.com (ci-après dénommé « le Site ») est édité par la société Jastro Limited (ci-après dénommée « Jastro »), société à responsabilité limitée, enregistrée au Royaume-Uni sous le numéro d'entreprise 836841, dont le siège social est situé à Suite 10 12 Durie Street, Leven, Fife, United Kingdom, KY8 4HE.\n\nDate d'incorporation: 07/02/2025\nTéléphone : (850) 783-4170\nEmail : support@seduc-ia.com"
+    },
+    {
+      title: "2. Directeur de la publication",
+      text: "Le Directeur de la publication du Site est le représentant légal de Jastro LIMITED.\n\nContact : support@seduc-ia.com\nTéléphone : (850) 783-4170"
+    },
+    {
+      title: "3. Hébergement",
+      text: "Le Site est hébergé par un prestataire de services basé dans l'Union Européenne, conformément aux lois et réglementations applicables en matière de protection des données.\n\nPour toute demande concernant l'hébergement, veuillez contacter : support@seduc-ia.com"
+    },
+    {
+      title: "4. Propriété intellectuelle",
+      text: "4.1 Titularité des droits : L'ensemble des éléments constituant le Site et le Service de SeducIA (notamment les textes, graphismes, logiciels, photographies, images, vidéos, sons, plans, logos, marques, noms de domaine, et tout autre élément distinctif) sont protégés par les lois et règlements britanniques et internationaux relatifs à la propriété intellectuelle. Ces éléments demeurent la propriété exclusive de Jastro LIMITED et/ou de ses concédants de licence.\n\n4.2 Interdiction de reproduction non autorisée : Toute reproduction, représentation, modification, publication, adaptation, exploitation de tout ou partie des éléments du Site, quel que soit le moyen ou le procédé utilisé, est strictement interdite sans l'autorisation écrite préalable de Jastro LIMITED. Toute exploitation non autorisée du Site ou de l'un quelconque des éléments qu'il contient sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions légales en vigueur.\n\n4.3 Marques et noms commerciaux : Les marques et noms commerciaux figurant sur le Site sont des marques déposées de Jastro LIMITED. Toute reproduction ou utilisation de ces marques sans autorisation préalable et écrite de Jastro LIMITED est prohibée.\n\n4.4 Liens vers le Site : La mise en place d'un lien hypertexte vers le Site ne nécessite pas d'autorisation préalable et écrite de Jastro LIMITED. Néanmoins, Jastro LIMITED se réserve le droit de demander la suppression d'un lien si elle estime que le site source ne respecte pas ses valeurs ou porte atteinte à son image."
+    },
+    {
+      title: "5. Protection des données personnelles",
+      text: "5.1 Responsable de traitement : Jastro LIMITED, en sa qualité de responsable de traitement au sens du Règlement Général sur la Protection des Données (RGPD) et du UK GDPR, s'engage à protéger la vie privée des utilisateurs du Site et à assurer la confidentialité des informations personnelles fournies.\n\n5.2 Délégué à la Protection des Données : Jastro LIMITED a désigné un Délégué à la Protection des Données que vous pouvez contacter pour toute question relative au traitement de vos données personnelles :\n\nPar email : support@seduc-ia.com\nPar courrier : Jastro LIMITED - Data Protection Officer, Suite 10 12 Durie Street, Leven, Fife, United Kingdom, KY8 4HE\n\n5.3 Droits des personnes concernées : Conformément à la législation applicable en matière de protection des données, vous disposez de droits concernant vos données personnelles, incluant le droit d'accès, de rectification, d'effacement, de limitation du traitement, de portabilité des données, d'opposition, et de définir des directives relatives au sort de vos données après votre décès.\n\n5.4 Politique de confidentialité : Pour obtenir des informations détaillées sur la collecte, l'utilisation et la protection de vos données personnelles, veuillez consulter notre Politique de confidentialité accessible à l'adresse suivante : https://seduc-ia.com/privacy."
+    },
+    {
+      title: "6. Cookies et technologies similaires",
+      text: "6.1 Définition : Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lorsque vous visitez notre Site ou utilisez notre Service. Les cookies nous permettent de reconnaître votre navigateur et de recueillir certaines informations sur votre navigation.\n\n6.2 Types de cookies utilisés : Notre Site utilise différents types de cookies :\n- Cookies strictement nécessaires au fonctionnement du Site\n- Cookies de fonctionnalité permettant de mémoriser vos préférences\n- Cookies analytiques permettant de comprendre comment vous utilisez notre Site\n- Cookies de ciblage/publicitaires permettant de vous proposer des contenus personnalisés\n\n6.3 Base juridique : Les cookies strictement nécessaires au fonctionnement du Site sont déposés sur le fondement de notre intérêt légitime. Les autres types de cookies ne sont déposés qu'après avoir recueilli votre consentement préalable, que vous pouvez retirer à tout moment.\n\n6.4 Gestion des cookies : Vous pouvez à tout moment configurer votre navigateur pour accepter, refuser ou supprimer tout ou partie des cookies. Vous pouvez également utiliser notre panneau de gestion des cookies accessible via le lien « Paramètres des cookies » présent en bas de chaque page de notre Site.\n\n6.5 Politique relative aux cookies : Pour obtenir des informations détaillées sur les cookies que nous utilisons, leurs finalités, durées de conservation et les tiers y ayant accès, veuillez consulter notre Politique relative aux cookies accessible à l'adresse suivante : https://seduc-ia.com/cookies."
+    },
+    {
+      title: "7. Limitation de responsabilité",
+      text: "7.1 Exactitude des informations : Jastro LIMITED s'efforce d'assurer au mieux de ses possibilités l'exactitude et la mise à jour des informations diffusées sur le Site. Toutefois, Jastro LIMITED ne peut garantir l'exactitude, la précision, l'exhaustivité ou l'adéquation des informations mises à disposition sur le Site à des fins particulières. En conséquence, Jastro LIMITED décline toute responsabilité pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur le Site.\n\n7.2 Disponibilité du Site : Jastro LIMITED s'efforce de maintenir le Site accessible 24 heures sur 24 et 7 jours sur 7. Néanmoins, Jastro LIMITED ne saurait être tenue responsable en cas d'indisponibilité du Site, pour quelque cause que ce soit, y compris en cas de maintenance nécessaire au bon fonctionnement du Site ou en cas de force majeure.\n\n7.3 Sécurité informatique : L'utilisateur du Site reconnaît avoir connaissance des caractéristiques et des limites de l'Internet, en particulier de ses performances techniques, des temps de réponse pour consulter, interroger ou transférer des données, et des risques liés à la sécurité des communications. Jastro LIMITED ne saurait être tenue responsable des dommages directs ou indirects, matériels ou immatériels, résultant notamment de l'utilisation du Site ou de l'impossibilité d'y accéder, de l'utilisation, du dysfonctionnement, d'une interruption ou d'un virus informatique.\n\n7.4 Limitation générale : Dans toute la mesure permise par la loi applicable, la responsabilité de Jastro LIMITED est limitée aux dommages directs, à l'exclusion de tout dommage indirect, de quelque nature que ce soit."
+    },
+    {
+      title: "8. Liens hypertextes vers des sites tiers",
+      text: "8.1 Présence de liens externes : Le Site peut contenir des liens hypertextes redirigeant vers des sites internet édités et/ou gérés par des tiers. Dans la mesure où Jastro LIMITED ne peut exercer aucun contrôle sur ces sites tiers, Jastro LIMITED ne peut être tenue responsable de l'accès à ces sites et sources externes, de leur contenu, publicités, produits, services ou tout autre élément disponible sur ou à partir de ces sites ou sources externes.\n\n8.2 Absence de responsabilité : Jastro LIMITED décline toute responsabilité quant aux contenus, légalité, exactitude ou disponibilité des informations, produits, services ou tout autre élément présent sur ces sites tiers. L'insertion de ces liens ne signifie pas que Jastro LIMITED approuve les éléments contenus sur ces sites. Il appartient à l'utilisateur de prendre toutes les précautions nécessaires pour s'assurer que le site tiers sélectionné ne contient ni virus informatique ni élément susceptible d'endommager son équipement informatique ou ses données.\n\n8.3 Signalement de contenu illicite : Si vous constatez qu'un site vers lequel Jastro LIMITED a créé un lien permet d'accéder à des contenus illicites, vous êtes invité à le signaler immédiatement à Jastro LIMITED à l'adresse suivante : support@seduc-ia.com. Jastro LIMITED s'engage à supprimer promptement tout lien vers un contenu manifestement illicite dès qu'elle en aura connaissance."
+    },
+    {
+      title: "9. Droit applicable et juridiction compétente",
+      text: "9.1 Droit applicable : Les présentes mentions légales sont régies par le droit britannique. Elles sont rédigées en langue française. Dans le cas où elles seraient traduites en une ou plusieurs langues, seul le texte français ferait foi en cas de litige.\n\n9.2 Règlement amiable des litiges : En cas de litige relatif à l'interprétation ou à l'exécution des présentes mentions légales, les parties s'efforceront de trouver une solution amiable avant toute action judiciaire.\n\n9.3 Juridiction compétente : À défaut de résolution amiable, tout litige relatif aux présentes mentions légales sera soumis à la compétence exclusive des tribunaux britanniques, sauf disposition légale impérative contraire."
+    },
+    {
+      title: "10. Médiation et résolution des litiges",
+      text: "10.1 Dispositif de médiation : Jastro LIMITED propose à ses clients un dispositif de médiation pour la résolution amiable des litiges. Pour accéder à ce service, veuillez contacter notre service client à l'adresse suivante : support@seduc-ia.com.\n\n10.2 Plateforme européenne de règlement en ligne des litiges : Pour les litiges transfrontaliers, les consommateurs résidant dans l'Union européenne peuvent également recourir à la plateforme européenne de règlement en ligne des litiges accessible à l'adresse suivante : https://ec.europa.eu/consumers/odr/"
+    },
+    {
+      title: "11. Modifications des mentions légales",
+      text: "11.1 Droit de modification : Jastro LIMITED se réserve le droit, à sa seule discrétion, de modifier, compléter ou remplacer les présentes mentions légales à tout moment. Les utilisateurs du Site sont donc invités à les consulter régulièrement.\n\n11.2 Date d'effet : Les modifications apportées aux mentions légales prennent effet dès leur publication sur le Site. L'utilisation continue du Site après publication des mentions légales modifiées vaut acceptation de ces modifications.\n\nDernière mise à jour des mentions légales : 25/03/2024"
+    }
+  ]
+};
+
+export default function LegalPage() {
+  return (
+    <LegalShell
+      title="Mentions légales"
+      lastUpdated="Dernière mise à jour: 25 Mars 2024"
+    >
+      <div className="space-y-8">
+        {legalContent.content.map((item, index) => (
+          <div key={index}>
+            <h2 className="text-xl font-bold mb-4">{item.title}</h2>
+            <p className="mb-4">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </LegalShell>
+  );
+} 

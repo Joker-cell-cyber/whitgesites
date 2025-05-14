@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ocrf-background: 0 0% 98%;
+    --ocrf-foreground: 0 0% 12%;
+    --ocrf-card: 0 0% 100%;
+    --ocrf-card-foreground: 0 0% 12%;
+    --ocrf-popover: 0 0% 100%;
+    --ocrf-popover-foreground: 0 0% 12%;
+    --ocrf-primary: 39 67% 47%;
+    --ocrf-primary-foreground: 0 0% 100%;
+    --ocrf-secondary: 26 68% 50%;
+    --ocrf-secondary-foreground: 0 0% 12%;
+    --ocrf-muted: 30 10% 92%;
+    --ocrf-muted-foreground: 0 0% 45%;
+    --ocrf-accent: 14 22% 24%;
+    --ocrf-accent-foreground: 0 0% 98%;
+    --ocrf-destructive: 0 84% 60%;
+    --ocrf-destructive-foreground: 0 0% 98%;
+    --ocrf-border: 0 0% 86%;
+    --ocrf-input: 0 0% 86%;
+    --ocrf-ring: 39 67% 47%;
+    --ocrf-radius: 0rem;
+
+    --background: var(--ocrf-background);
+    --foreground: var(--ocrf-foreground);
+    --card: var(--ocrf-card);
+    --card-foreground: var(--ocrf-card-foreground);
+    --popover: var(--ocrf-popover);
+    --popover-foreground: var(--ocrf-popover-foreground);
+    --primary: var(--ocrf-primary);
+    --primary-foreground: var(--ocrf-primary-foreground);
+    --secondary: var(--ocrf-secondary);
+    --secondary-foreground: var(--ocrf-secondary-foreground);
+    --muted: var(--ocrf-muted);
+    --muted-foreground: var(--ocrf-muted-foreground);
+    --accent: var(--ocrf-accent);
+    --accent-foreground: var(--ocrf-accent-foreground);
+    --destructive: var(--ocrf-destructive);
+    --destructive-foreground: var(--ocrf-destructive-foreground);
+    --border: var(--ocrf-border);
+    --input: var(--ocrf-input);
+    --ring: var(--ocrf-ring);
+    --radius: var(--ocrf-radius);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#fafafa] text-[#1f1f1f];
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s forwards;
+  }
+  
+  .ocrf-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-[#BF9B30] to-[#D4B254];
+  }
+  
+  .ocrf-text-gradient-secondary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#C87137] to-[#E8915C];
+  }
+  
+  .ocrf-bg-gradient {
+    @apply bg-gradient-to-b from-[#BF9B30] to-[#D4B254];
+  }
+  
+  .ocrf-bg-gradient-secondary {
+    @apply bg-gradient-to-b from-[#C87137] to-[#E8915C];
+  }
+  
+  .animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out forwards;
+  }
+  
+  .animate-draw-line-delay {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 1s forwards;
+  }
+  
+  .animate-draw-line-delay-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 2s forwards;
+  }
+  
+  .animate-draw-line-delay-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 3s forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+  
+  .animate-fade-in-right {
+    animation: fade-in-right 1s ease-out forwards;
+  }
+  
+  .ocrf-glass-card {
+    @apply bg-white border border-[#DDDDDD] shadow-md;
+  }
+  
+  .ocrf-button-primary {
+    @apply bg-[#BF9B30] hover:bg-[#D4B254] text-white font-medium px-6 py-2.5 transition-all shadow-md hover:shadow-lg uppercase tracking-wide text-sm;
+  }
+  
+  .ocrf-button-secondary {
+    @apply bg-[#C87137] hover:bg-[#D48247] text-white font-medium px-6 py-2.5 transition-all shadow-md hover:shadow-lg uppercase tracking-wide text-sm;
+  }
+  
+  .ocrf-button-ghost {
+    @apply bg-[#403D39] hover:bg-[#504A45] text-white font-medium px-6 py-2.5 transition-all shadow-md hover:shadow-lg uppercase tracking-wide text-sm;
+  }
+  
+  .ocrf-button-outline {
+    @apply bg-transparent border-2 border-[#BF9B30] text-[#BF9B30] hover:bg-[#BF9B30]/5 font-medium px-6 py-2.5 transition-all uppercase tracking-wide text-sm;
+  }
+  
+  .ocrf-section {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .ocrf-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .ocrf-card {
+    @apply bg-white border border-[#DDDDDD] p-6 shadow-md transition-all hover:shadow-lg;
+  }
+  
+  .ocrf-heading {
+    @apply font-bold uppercase tracking-wider;
+  }
+  
+  .ocrf-divider {
+    @apply h-px w-full bg-[#DDDDDD] my-8;
+  }
+  
+  .ocrf-metal-effect {
+    background: linear-gradient(145deg, #f5f5f5, #dddddd);
+    border: 1px solid #d0d0d0;
+    box-shadow: 5px 5px 10px #c8c8c8, -5px -5px 10px #ffffff;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(191, 155, 48, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(191, 155, 48, 0.4);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Personnalisation de la barre de défilement */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BF9B30;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4B254;
+}
+
+::selection {
+  background-color: rgba(236, 190, 62, 0.3);
+  color: white;
+}
+
+/* Assurer que les boutons et les liens sont cliquables */
+button, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Améliorer la réactivité des éléments interactifs */
+button:active, a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+/* Assurer que les éléments de la FAQ sont cliquables */
+#faq button {
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}

@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Variables avec nouveau préfixe fs- */
+    --fs-background: 195 30% 96%;
+    --fs-foreground: 200 33% 18%;
+    --fs-card: 0 0% 100%;
+    --fs-card-foreground: 200 33% 18%;
+    --fs-popover: 0 0% 100%;
+    --fs-popover-foreground: 200 33% 18%;
+    --fs-primary: 174 83% 36%;
+    --fs-primary-foreground: 0 0% 100%;
+    --fs-secondary: 196 100% 28%;
+    --fs-secondary-foreground: 0 0% 100%;
+    --fs-muted: 196 15% 93%;
+    --fs-muted-foreground: 200 9% 45%;
+    --fs-accent: 44 100% 77%;
+    --fs-accent-foreground: 200 33% 18%;
+    --fs-destructive: 0 84% 60%;
+    --fs-destructive-foreground: 0 0% 100%;
+    --fs-border: 195 10% 85%;
+    --fs-input: 195 10% 85%;
+    --fs-ring: 174 83% 36%;
+    --fs-radius: 0.5rem;
+
+    /* Variables compatibility with shadcn */
+    --background: var(--fs-background);
+    --foreground: var(--fs-foreground);
+    --card: var(--fs-card);
+    --card-foreground: var(--fs-card-foreground);
+    --popover: var(--fs-popover);
+    --popover-foreground: var(--fs-popover-foreground);
+    --primary: var(--fs-primary);
+    --primary-foreground: var(--fs-primary-foreground);
+    --secondary: var(--fs-secondary);
+    --secondary-foreground: var(--fs-secondary-foreground);
+    --muted: var(--fs-muted);
+    --muted-foreground: var(--fs-muted-foreground);
+    --accent: var(--fs-accent);
+    --accent-foreground: var(--fs-accent-foreground);
+    --destructive: var(--fs-destructive);
+    --destructive-foreground: var(--fs-destructive-foreground);
+    --border: var(--fs-border);
+    --input: var(--fs-input);
+    --ring: var(--fs-ring);
+    --radius: var(--fs-radius);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#eef4f7] text-[#1A2A36];
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  .fs-grid-pattern {
+    background-image: url('/grid-pattern.svg');
+    background-repeat: repeat;
+  }
+  
+  .fs-floating-element {
+    animation: float 25s ease-in-out infinite;
+  }
+  
+  .fs-floating-card {
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .fs-glow-point {
+    animation: pulse-slow 4s ease-in-out infinite alternate;
+  }
+  
+  .fs-hero {
+    background-color: #0a1a25;
+  }
+  
+  .fs-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#00B8A9] via-[#00A4B4] to-[#00848E];
+  }
+  
+  .fs-text-gradient-secondary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#00848E] to-[#2C3E50];
+  }
+  
+  .fs-bg-gradient {
+    @apply bg-gradient-to-r from-[#00B8A9] to-[#00848E];
+  }
+  
+  .fs-bg-gradient-secondary {
+    @apply bg-gradient-to-r from-[#00848E] to-[#2C3E50];
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s forwards;
+  }
+  
+  .animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out forwards;
+  }
+  
+  .animate-draw-line-delay {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 1s forwards;
+  }
+  
+  .animate-draw-line-delay-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 2s forwards;
+  }
+  
+  .animate-draw-line-delay-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 3s forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 1s ease-out forwards;
+  }
+
+  .fs-glass-card {
+    @apply bg-white/90 backdrop-blur-md rounded-lg border border-slate-200 shadow-md;
+  }
+  
+  .fs-button-primary {
+    @apply bg-[#00B8A9] hover:bg-[#00A193] text-white font-medium px-6 py-2.5 rounded-md transition-all shadow-md shadow-teal-400/20 hover:shadow-lg hover:shadow-teal-400/30 hover:translate-y-[-2px];
+  }
+  
+  .fs-button-secondary {
+    @apply bg-[#00848E] hover:bg-[#006D75] text-white font-medium px-6 py-2.5 rounded-md transition-all shadow-md shadow-blue-400/20 hover:shadow-lg hover:shadow-blue-400/30 hover:translate-y-[-2px];
+  }
+  
+  .fs-button-outline {
+    @apply bg-transparent border-2 border-[#00B8A9] text-[#00A193] hover:bg-[#00B8A9]/5 font-medium px-6 py-2.5 rounded-md transition-all hover:translate-y-[-2px];
+  }
+  
+  .fs-section {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .fs-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  .fs-card {
+    @apply bg-white rounded-lg shadow-md p-6 border border-slate-100 transition-all hover:shadow-lg;
+  }
+  
+  .fs-data-box {
+    @apply bg-white border border-slate-200 rounded-lg p-4 flex flex-col justify-between gap-4 shadow-sm hover:shadow transition-all;
+  }
+
+  /* Classes améliorant le contraste */
+  .fs-high-contrast-text {
+    @apply text-[#004D46];
+  }
+  
+  .fs-high-contrast-bg {
+    @apply bg-[#00B8A9] text-white;
+  }
+  
+  .fs-high-contrast-border {
+    @apply border-2 border-[#006A62];
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(0, 184, 169, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 184, 169, 0.5);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Personnalisation de la barre de défilement */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2eef2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00B8A9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00A4B4;
+}

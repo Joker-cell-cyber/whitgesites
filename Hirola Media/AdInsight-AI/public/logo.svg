@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <path d="M10 42L20 15H30L40 42H32L30 36H20L18 42H10Z" fill="#2563EB"/>
+  <path d="M25 20L22 30H28L25 20Z" fill="#2563EB"/>
+  <path d="M45 15H53V42H45V15Z" fill="#2563EB"/>
+  
+  <circle cx="65" cy="28" r="6" fill="#2563EB" opacity="0.8" />
+  
+  <path d="M85 15H93V42H85V15Z" fill="#2563EB"/>
+  <path d="M100 15H108V42H100V15Z" fill="#2563EB"/>
+  <path d="M113 15H121C130 15 135 21 135 28.5C135 36 130 42 121 42H113V15ZM121 36C125 36 127 33 127 28.5C127 24 125 21 121 21H121V36H121Z" fill="#2563EB"/>
+  <path d="M140 15H148V42H140V15Z" fill="#2563EB"/>
+  <path d="M150 42L150 15H158V33L168 15H176L164 34L178 42H168L158 33V42H150Z" fill="#2563EB"/>
+  <path d="M180 42V15H188V36H202V42H180Z" fill="#2563EB"/>
+  
+  <text x="120" y="53" text-anchor="middle" font-family="Arial" font-size="10" fill="#475569" font-weight="600">ANALYTICS</text>
+</svg> 

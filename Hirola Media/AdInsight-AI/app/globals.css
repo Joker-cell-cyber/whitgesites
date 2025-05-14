@@ -1,0 +1,285 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Variables avec nouveau préfixe adfi- */
+    --adfi-background: 210 33% 98%;
+    --adfi-foreground: 224 71% 4%;
+    --adfi-card: 0 0% 100%;
+    --adfi-card-foreground: 224 71% 4%;
+    --adfi-popover: 0 0% 100%;
+    --adfi-popover-foreground: 224 71% 4%;
+    --adfi-primary: 221 83% 53%;
+    --adfi-primary-foreground: 210 40% 98%;
+    --adfi-secondary: 217 33% 17%;
+    --adfi-secondary-foreground: 210 40% 98%;
+    --adfi-muted: 220 14% 96%;
+    --adfi-muted-foreground: 220 8% 46%;
+    --adfi-accent: 216 34% 17%;
+    --adfi-accent-foreground: 210 40% 98%;
+    --adfi-destructive: 0 84% 60%;
+    --adfi-destructive-foreground: 210 40% 98%;
+    --adfi-border: 220 13% 91%;
+    --adfi-input: 220 13% 91%;
+    --adfi-ring: 221 83% 53%;
+    --adfi-radius: 0.5rem;
+    --adfi-chart-1: 221 83% 53%;
+    --adfi-chart-2: 220 70% 50%;
+    --adfi-chart-3: 217 91% 60%;
+    --adfi-chart-4: 214 95% 77%;
+    --adfi-chart-5: 213 94% 68%;
+
+    /* Variables compatibility with shadcn */
+    --background: var(--adfi-background);
+    --foreground: var(--adfi-foreground);
+    --card: var(--adfi-card);
+    --card-foreground: var(--adfi-card-foreground);
+    --popover: var(--adfi-popover);
+    --popover-foreground: var(--adfi-popover-foreground);
+    --primary: var(--adfi-primary);
+    --primary-foreground: var(--adfi-primary-foreground);
+    --secondary: var(--adfi-secondary);
+    --secondary-foreground: var(--adfi-secondary-foreground);
+    --muted: var(--adfi-muted);
+    --muted-foreground: var(--adfi-muted-foreground);
+    --accent: var(--adfi-accent);
+    --accent-foreground: var(--adfi-accent-foreground);
+    --destructive: var(--adfi-destructive);
+    --destructive-foreground: var(--adfi-destructive-foreground);
+    --border: var(--adfi-border);
+    --input: var(--adfi-input);
+    --ring: var(--adfi-ring);
+    --radius: var(--adfi-radius);
+    --chart-1: var(--adfi-chart-1);
+    --chart-2: var(--adfi-chart-2);
+    --chart-3: var(--adfi-chart-3);
+    --chart-4: var(--adfi-chart-4);
+    --chart-5: var(--adfi-chart-5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#f8fafc] text-[#101935];
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s forwards;
+  }
+  
+  .adfi-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#2563eb] via-[#4285F4] to-[#60a5fa];
+  }
+  
+  .adfi-bg-gradient {
+    @apply bg-gradient-to-r from-[#2563eb] to-[#60a5fa];
+  }
+  
+  .adfi-bg-gradient-secondary {
+    @apply bg-gradient-to-r from-[#101935] to-[#1e293b];
+  }
+  
+  .animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out forwards;
+  }
+  
+  .animate-draw-line-delay {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 1s forwards;
+  }
+  
+  .animate-draw-line-delay-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 2s forwards;
+  }
+  
+  .animate-draw-line-delay-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 3s forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+  
+  .adfi-glass-card {
+    @apply backdrop-blur-md bg-white/90 border border-slate-200 rounded-lg shadow-md;
+  }
+  
+  .adfi-button-primary {
+    @apply bg-[#2563eb] hover:bg-[#3b82f6] text-white font-medium px-6 py-2.5 rounded-lg transition-all shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:translate-y-[-2px];
+  }
+  
+  .adfi-button-secondary {
+    @apply bg-transparent border border-[#2563eb] text-[#2563eb] hover:bg-[#2563eb]/5 font-medium px-6 py-2.5 rounded-lg transition-all hover:translate-y-[-2px];
+  }
+  
+  .adfi-hero-section {
+    @apply relative overflow-hidden bg-gradient-to-b from-slate-50 to-blue-50 py-20;
+  }
+  
+  .adfi-data-card {
+    @apply bg-white rounded-lg shadow-md p-4 border border-slate-100 hover:shadow-lg transition-all;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Personnalisation de la barre de défilement */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
+}
+
+/* Assurer que les boutons et les liens sont cliquables */
+button, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Améliorer la réactivité des éléments interactifs */
+button:active, a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+/* Assurer que les éléments de la FAQ sont cliquables */
+#faq button {
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

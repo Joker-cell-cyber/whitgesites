@@ -1,0 +1,123 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond avec une légère grille -->
+  <rect width="800" height="600" fill="#F9FAFB" />
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="1" />
+  </pattern>
+  <rect width="800" height="600" fill="url(#grid)" />
+
+  <!-- Graphiques et éléments de données -->
+  <g transform="translate(100, 150)">
+    <!-- Graphique à barres -->
+    <rect x="0" y="200" width="60" height="100" rx="4" fill="#818CF8" opacity="0.8">
+      <animate attributeName="height" from="0" to="100" dur="1s" />
+      <animate attributeName="y" from="300" to="200" dur="1s" />
+    </rect>
+    <rect x="80" y="150" width="60" height="150" rx="4" fill="#6366F1" opacity="0.9">
+      <animate attributeName="height" from="0" to="150" dur="1s" begin="0.2s" />
+      <animate attributeName="y" from="300" to="150" dur="1s" begin="0.2s" />
+    </rect>
+    <rect x="160" y="100" width="60" height="200" rx="4" fill="#4F46E5" opacity="1">
+      <animate attributeName="height" from="0" to="200" dur="1s" begin="0.4s" />
+      <animate attributeName="y" from="300" to="100" dur="1s" begin="0.4s" />
+    </rect>
+    <rect x="240" y="180" width="60" height="120" rx="4" fill="#4338CA" opacity="0.9">
+      <animate attributeName="height" from="0" to="120" dur="1s" begin="0.6s" />
+      <animate attributeName="y" from="300" to="180" dur="1s" begin="0.6s" />
+    </rect>
+    <rect x="320" y="220" width="60" height="80" rx="4" fill="#3730A3" opacity="0.8">
+      <animate attributeName="height" from="0" to="80" dur="1s" begin="0.8s" />
+      <animate attributeName="y" from="300" to="220" dur="1s" begin="0.8s" />
+    </rect>
+
+    <!-- Ligne de tendance -->
+    <path d="M30 220 L110 170 L190 120 L270 190 L350 240" stroke="#EF4444" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="stroke-dasharray" from="500" to="0" dur="2s" />
+    </path>
+    
+    <!-- Points de données -->
+    <circle cx="30" cy="220" r="6" fill="#EF4444">
+      <animate attributeName="r" from="0" to="6" dur="0.3s" begin="1s" />
+    </circle>
+    <circle cx="110" cy="170" r="6" fill="#EF4444">
+      <animate attributeName="r" from="0" to="6" dur="0.3s" begin="1.2s" />
+    </circle>
+    <circle cx="190" cy="120" r="6" fill="#EF4444">
+      <animate attributeName="r" from="0" to="6" dur="0.3s" begin="1.4s" />
+    </circle>
+    <circle cx="270" cy="190" r="6" fill="#EF4444">
+      <animate attributeName="r" from="0" to="6" dur="0.3s" begin="1.6s" />
+    </circle>
+    <circle cx="350" cy="240" r="6" fill="#EF4444">
+      <animate attributeName="r" from="0" to="6" dur="0.3s" begin="1.8s" />
+    </circle>
+  </g>
+
+  <!-- Éléments de la stratégie d'entreprise -->
+  <g transform="translate(520, 100)">
+    <!-- Cercle central -->
+    <circle cx="100" cy="200" r="80" fill="#F1F5F9" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 4">
+      <animate attributeName="r" from="0" to="80" dur="1s" />
+    </circle>
+    
+    <!-- Idées et concepts connectés -->
+    <g>
+      <line x1="100" y1="120" x2="100" y2="80" stroke="#94A3B8" stroke-width="2">
+        <animate attributeName="y2" from="120" to="80" dur="0.5s" begin="1s" />
+      </line>
+      <circle cx="100" cy="60" r="20" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="2">
+        <animate attributeName="cy" from="120" to="60" dur="0.5s" begin="1s" />
+      </circle>
+      <text x="100" y="65" text-anchor="middle" font-family="Arial" font-size="12" fill="#6D28D9">Idea</text>
+    </g>
+    
+    <g>
+      <line x1="100" y1="280" x2="100" y2="320" stroke="#94A3B8" stroke-width="2">
+        <animate attributeName="y2" from="280" to="320" dur="0.5s" begin="1s" />
+      </line>
+      <circle cx="100" cy="340" r="20" fill="#DCFCE7" stroke="#22C55E" stroke-width="2">
+        <animate attributeName="cy" from="280" to="340" dur="0.5s" begin="1s" />
+      </circle>
+      <text x="100" y="345" text-anchor="middle" font-family="Arial" font-size="12" fill="#16A34A">Result</text>
+    </g>
+    
+    <g>
+      <line x1="20" y1="200" x2="-20" y2="200" stroke="#94A3B8" stroke-width="2">
+        <animate attributeName="x2" from="20" to="-20" dur="0.5s" begin="1.2s" />
+      </line>
+      <circle cx="-40" cy="200" r="20" fill="#FEE2E2" stroke="#EF4444" stroke-width="2">
+        <animate attributeName="cx" from="20" to="-40" dur="0.5s" begin="1.2s" />
+      </circle>
+      <text x="-40" y="205" text-anchor="middle" font-family="Arial" font-size="12" fill="#DC2626">Risk</text>
+    </g>
+    
+    <g>
+      <line x1="180" y1="200" x2="220" y2="200" stroke="#94A3B8" stroke-width="2">
+        <animate attributeName="x2" from="180" to="220" dur="0.5s" begin="1.2s" />
+      </line>
+      <circle cx="240" cy="200" r="20" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2">
+        <animate attributeName="cx" from="180" to="240" dur="0.5s" begin="1.2s" />
+      </circle>
+      <text x="240" y="205" text-anchor="middle" font-family="Arial" font-size="12" fill="#D97706">Budget</text>
+    </g>
+    
+    <!-- Texte central -->
+    <text x="100" y="205" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#1E293B">Strat</text>
+  </g>
+
+  <!-- Éléments décoratifs de fond -->
+  <g opacity="0.1">
+    <circle cx="50" cy="50" r="30" fill="#6366F1">
+      <animate attributeName="r" values="30;35;30" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="750" cy="550" r="40" fill="#8B5CF6">
+      <animate attributeName="r" values="40;50;40" dur="4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="700" cy="100" r="25" fill="#EC4899">
+      <animate attributeName="r" values="25;30;25" dur="3.5s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="100" cy="500" r="35" fill="#14B8A6">
+      <animate attributeName="r" values="35;40;35" dur="4.5s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg> 

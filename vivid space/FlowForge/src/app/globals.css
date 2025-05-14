@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+@theme {
+  /* FlowForge color palette */
+  --color-flow-green-50: #f0f9f0;
+  --color-flow-green-100: #dceeda;
+  --color-flow-green-200: #bde0b9;
+  --color-flow-green-300: #92cc8e;
+  --color-flow-green-400: #6bb465;
+  --color-flow-green-500: #4b9745;
+  --color-flow-green-600: #377a31;
+  --color-flow-green-700: #2e6229;
+  --color-flow-green-800: #244d23;
+  --color-flow-green-900: #1d401c;
+
+  --color-flow-teal-50: #effaf9;
+  --color-flow-teal-100: #d7f4f0;
+  --color-flow-teal-200: #b0e9e0;
+  --color-flow-teal-300: #84d7cb;
+  --color-flow-teal-400: #4cbeb2;
+  --color-flow-teal-500: #34a397;
+  --color-flow-teal-600: #27827b;
+  --color-flow-teal-700: #246963;
+  --color-flow-teal-800: #20514d;
+  --color-flow-teal-900: #1d4340;
+  
+  /* Base colors */
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes float-delay {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translateY(0px) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(6deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(12deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce-small {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float-delay 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 5s ease-in-out infinite;
+}
+
+.animate-shine {
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+.animate-bounce-small {
+  animation: bounce-small 2s ease-in-out infinite;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  @apply bg-gradient-to-r from-flow-green-500 to-flow-teal-500 bg-clip-text text-transparent;
+}
+
+/* Button effects */
+.button-glow {
+  box-shadow: 0 0 10px 2px rgba(75, 151, 69, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(75, 151, 69, 0.4);
+}
+
+/* Card effects */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Additional utility classes */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.rotate-hover:hover {
+  transform: rotate(3deg);
+  transition: transform 0.3s ease;
+}
+
+.scale-hover:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Image effects */
+.image-effect {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.image-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(126, 91, 199, 0.2) 0%, rgba(87, 125, 249, 0.2) 100%);
+}
+
+/* Responsive typography helpers */
+.responsive-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.responsive-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Additional custom styles can go here */

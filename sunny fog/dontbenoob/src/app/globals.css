@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+@theme {
+  /* DontBeNoob hardcore gaming color palette */
+  --color-black: #0A0A0A;
+  --color-razer-green-50: #E6FAE3;
+  --color-razer-green-100: #C3F2BA;
+  --color-razer-green-200: #9FE991;
+  --color-razer-green-300: #7AE067;
+  --color-razer-green-400: #56D73E;
+  --color-razer-green-500: #44D62C;
+  --color-razer-green-600: #33A821;
+  --color-razer-green-700: #277A18;
+  --color-razer-green-800: #1E5E12;
+  --color-razer-green-900: #184D0E;
+
+  --color-neon-purple-50: #F5EEFF;
+  --color-neon-purple-100: #E9D9FF;
+  --color-neon-purple-200: #D2B3FF;
+  --color-neon-purple-300: #BC8DFF;
+  --color-neon-purple-400: #A667FF;
+  --color-neon-purple-500: #9147FF;
+  --color-neon-purple-600: #7837DB;
+  --color-neon-purple-700: #5C29B7;
+  --color-neon-purple-800: #431D93;
+  --color-neon-purple-900: #2E157A;
+  
+  --color-electric-blue-50: #E6FFFF;
+  --color-electric-blue-100: #CCFFFF;
+  --color-electric-blue-200: #99FFFF;
+  --color-electric-blue-300: #66FFFF;
+  --color-electric-blue-400: #33FFFF;
+  --color-electric-blue-500: #00FFFF;
+  --color-electric-blue-600: #00CCCC;
+  --color-electric-blue-700: #009999;
+  --color-electric-blue-800: #006666;
+  --color-electric-blue-900: #003333;
+  
+  /* Base colors */
+  --color-background: var(--color-black);
+  --color-foreground: #f2f2f2;
+  --color-card-bg: #131313;
+  --color-accent-primary: var(--color-razer-green-500);
+  --color-accent-secondary: var(--color-neon-purple-500);
+  --color-accent-tertiary: var(--color-electric-blue-500);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Chakra Petch', 'Saira Condensed', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px 0 rgba(68, 214, 44, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(68, 214, 44, 0.6); }
+  100% { box-shadow: 0 0 10px 0 rgba(68, 214, 44, 0.4); }
+}
+
+@keyframes neon-pulse {
+  0% { box-shadow: 0 0 10px 0 rgba(0, 255, 255, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(0, 255, 255, 0.6); }
+  100% { box-shadow: 0 0 10px 0 rgba(0, 255, 255, 0.4); }
+}
+
+@keyframes purple-pulse {
+  0% { box-shadow: 0 0 10px 0 rgba(145, 71, 255, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(145, 71, 255, 0.6); }
+  100% { box-shadow: 0 0 10px 0 rgba(145, 71, 255, 0.4); }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes glitch {
+  0% { 
+    clip-path: inset(40% 0 61% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% { 
+    clip-path: inset(92% 0 1% 0);
+    transform: translate(1px, -3px);
+  }
+  40% { 
+    clip-path: inset(43% 0 1% 0);
+    transform: translate(3px, 1px);
+  }
+  60% { 
+    clip-path: inset(25% 0 58% 0);
+    transform: translate(-5px, 2px);
+  }
+  80% { 
+    clip-path: inset(54% 0 7% 0);
+    transform: translate(5px, -1px);
+  }
+  100% { 
+    clip-path: inset(58% 0 43% 0);
+    transform: translate(-2px, 2px);
+  }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 3s infinite;
+}
+
+.animate-purple-pulse {
+  animation: purple-pulse 3s infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.animate-glitch {
+  animation: glitch 0.8s infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 15s linear infinite;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  @apply bg-gradient-to-r from-[#44D62C] to-[#00FFFF] bg-clip-text text-transparent;
+}
+
+.gradient-text-purple {
+  @apply bg-gradient-to-r from-[#9147FF] to-[#00FFFF] bg-clip-text text-transparent;
+}
+
+/* Button effects */
+.button-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(68, 214, 44, 0.4);
+  transform: translateY(-2px);
+}
+
+.button-neon-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.button-neon-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(0, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Card effects */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--color-card-bg);
+  border: 1px solid rgba(68, 214, 44, 0.1);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(68, 214, 44, 0.2);
+  border: 1px solid rgba(68, 214, 44, 0.3);
+}
+
+/* Hexagon pattern background */
+.hexagon-pattern {
+  background-image: 
+    repeating-linear-gradient(60deg, rgba(68, 214, 44, 0.05) 0, rgba(68, 214, 44, 0.05) 1px, transparent 1px, transparent 30px),
+    repeating-linear-gradient(120deg, rgba(68, 214, 44, 0.05) 0, rgba(68, 214, 44, 0.05) 1px, transparent 1px, transparent 30px);
+}
+
+/* Circuit board pattern */
+.circuit-pattern {
+  background-image: 
+    linear-gradient(rgba(68, 214, 44, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(68, 214, 44, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px, 30px 30px, 10px 10px, 10px 10px;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 6px;
+  border: 1px solid rgba(68, 214, 44, 0.15);
+}
+
+/* HUD-inspired container */
+.hud-container {
+  position: relative;
+  border: 1px solid rgba(68, 214, 44, 0.3);
+  background-color: rgba(10, 10, 10, 0.8);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.hud-container::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  width: 40px;
+  height: 5px;
+  background-color: rgba(68, 214, 44, 0.5);
+}
+
+.hud-container::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  right: 10px;
+  width: 40px;
+  height: 5px;
+  background-color: rgba(0, 255, 255, 0.5);
+}
+
+/* Glitch effect for text */
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: rgba(0, 255, 255, 0.8);
+  z-index: -1;
+}
+
+.glitch-text::after {
+  color: rgba(145, 71, 255, 0.8);
+  z-index: -2;
+}
+
+/* Responsive typography helpers */
+.responsive-heading {
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.responsive-subtitle {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 400;
+}

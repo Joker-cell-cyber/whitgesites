@@ -1,0 +1,522 @@
+'use client';
+
+import { useState, Suspense, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Checkbox } from "@/app/components/ui/checkbox";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/app/components/ui/dialog";
+import { getTokenCheckoutLink, getSubscriptionCheckoutLink, tokenCheckoutLinks } from '@/app/config/checkout-links';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
+import { termsContent } from '@/app/legal-pages/terms';
+import { privacyContent } from '@/app/legal-pages/privacy';
+import { refundContent } from '@/app/legal-pages/refund';
+import { legalContent } from '@/app/legal-pages/legal';
+import { Shield, CreditCard, Zap } from 'lucide-react';
+import { ProductManager, ProductDetails } from '@/lib/product-utils';
+
+function PreCheckoutContent() {
+  const searchParams = useSearchParams();
+  const [additionalTokens, setAdditionalTokens] = useState(0);
+  const [availableTokenOptions, setAvailableTokenOptions] = useState<number[]>([]);
+  const [isAgeVerified, setIsAgeVerified] = useState(false);
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+  const [isNewsletterAccepted, setIsNewsletterAccepted] = useState(false);
+  const [openDialog, setOpenDialog] = useState<string | null>(null);
+  const [showSubscriptionConfirmation, setShowSubscriptionConfirmation] = useState(false);
+  const [pendingCheckoutLink, setPendingCheckoutLink] = useState<string | null>(null);
+  
+  // User information
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  
+  // Product manager
+  const [productManager, setProductManager] = useState<ProductManager | null>(null);
+  const [productDetails, setProductDetails] = useState<ProductDetails | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  
+  // Récupérer tous les paramètres d'URL
+  const planParam = searchParams.get('plan');
+  const periodParam = searchParams.get('period');
+  const tokensParam = searchParams.get('tokens');
+  
+  // Déterminer si c'est un achat one-time ou un abonnement
+  const isOneTime = periodParam?.toLowerCase() === 'one-time';
+  
+  // Initialiser le ProductManager et récupérer les détails du produit
+  useEffect(() => {
+    const initializeProductManager = async () => {
+      try {
+        setLoading(true);
+        const manager = ProductManager.getInstance();
+        await manager.initialize();
+        setProductManager(manager);
+        
+        // Vérifier si les paramètres requis sont présents
+        if (!planParam || !periodParam) {
+          throw new Error('Plan et période requis');
+        }
+        
+        // Pour les achats à la carte, vérifier que le nombre de tokens est spécifié
+        if (isOneTime && !tokensParam) {
+          throw new Error('Nombre de tokens requis pour un achat unique');
+        }
+        
+        let details;
+        
+        if (isOneTime) {
+          // Pour les achats à la carte, créer un objet ProductDetails spécifique
+          const tokenCount = parseInt(tokensParam || '0', 10);
+          
+          // Obtenir l'ID du produit pour les tokens
+          const tokenPackId = manager.getTokenPackId(planParam, tokenCount);
+          if (!tokenPackId) {
+            throw new Error(`Pack de tokens non trouvé pour ${tokenCount} tokens`);
+          }
+          
+          details = {
+            id: tokenPackId,
+            name: `${tokenCount} TOKEN PACK`,
+            price: tokenCount * 0.90, // Prix fixe pour les tokens à la carte
+            nextBillingDate: 'Paiement unique',
+            includedTokens: tokenCount,
+            additionalTokenPrice: 0 // Pas de tokens supplémentaires pour les achats à la carte
+          };
+        } else {
+          // Pour les abonnements, récupérer les détails du produit
+          details = manager.getProductDetails(planParam, periodParam);
+          if (!details) {
+            throw new Error(`Produit non trouvé pour le plan ${planParam} et la période ${periodParam}`);
+          }
+        }
+        
+        setProductDetails(details);
+        
+        // Définir les options de tokens supplémentaires disponibles
+        if (!isOneTime) {
+          // Options pour les tokens supplémentaires (uniquement pour les abonnements)
+          setAvailableTokenOptions([0, 10, 20, 50, 100, 200, 300, 500]);
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'initialisation:', error);
+        setError((error as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    initializeProductManager();
+  }, [planParam, periodParam, tokensParam, isOneTime]);
+  
+  // Recalculer les prix lorsque les valeurs changent
+  const [additionalTokensPrice, setAdditionalTokensPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  
+  useEffect(() => {
+    if (productDetails) {
+      // Calculer le prix des tokens supplémentaires
+      const tokenPrice = additionalTokens * (productDetails.additionalTokenPrice || 0);
+      setAdditionalTokensPrice(tokenPrice);
+      
+      // Calculer le prix total
+      setTotalPrice(productDetails.price + tokenPrice);
+    }
+  }, [additionalTokens, productDetails]);
+
+  // Contenu des pages légales
+  const renderLegalContent = (content: any) => {
+    if (!content || !content.content) return null;
+    
+    return (
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">{content.title}</h2>
+        {content.content.map((section: any, index: number) => (
+          <div key={index} className="mb-4">
+            <h3 className="text-md font-medium mb-2">{section.title}</h3>
+            <p className="text-sm text-gray-300 whitespace-pre-line">{section.text}</p>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  // Obtenir le libellé de la période de facturation
+  const translatePeriod = (period: string) => {
+    const normalizedPeriod = period.toLowerCase().trim();
+    
+    switch (normalizedPeriod) {
+      case 'bi-weekly': return 'bi-hebdomadaire';
+      case 'monthly': return 'mensuelle';
+      case 'quarterly': return 'trimestrielle';
+      case 'annualy': 
+      case 'yearly': 
+      case 'annual': return 'annuelle';
+      case 'one-time': return 'paiement unique';
+      default: return normalizedPeriod;
+    }
+  };
+
+  const proceedToPayment = () => {
+    if (pendingCheckoutLink) {
+      window.location.href = pendingCheckoutLink;
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Vérifications des conditions
+    if (!isTermsAccepted || !isAgeVerified) {
+      alert('Veuillez accepter les conditions requises pour continuer');
+      return;
+    }
+
+    if (!productManager || !productDetails) {
+      alert('Erreur lors de la préparation de la commande');
+      return;
+    }
+    
+    try {
+      // Construire l'URL de checkout selon le format CheckoutChamp
+      const products: {
+        subscriptionId?: string;
+        tokenPackId?: string;
+      } = {};
+      
+      // 1. Ajouter l'abonnement principal ou le pack de tokens
+      if (isOneTime) {
+        products.tokenPackId = productDetails.id;
+      } else {
+        products.subscriptionId = productDetails.id;
+      }
+      
+      // 2. Ajouter le pack de tokens supplémentaires si nécessaire
+      if (additionalTokens > 0 && !isOneTime) {
+        // Récupérer l'ID du produit pour les tokens supplémentaires
+        const tokenPackId = productManager.getTokenPackId(planParam || '', additionalTokens);
+        if (tokenPackId) {
+          products.tokenPackId = tokenPackId;
+        }
+      }
+      
+      // 3. Construire l'URL avec uniquement le paramètre products
+      const checkoutUrl = productManager.buildCheckoutUrl(products);
+      
+      // 4. Stocker les informations utilisateur dans le localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('checkout_firstName', firstName);
+        localStorage.setItem('checkout_lastName', lastName);
+        localStorage.setItem('checkout_email', email);
+        localStorage.setItem('checkout_newsletter', isNewsletterAccepted ? '1' : '0');
+      }
+      
+      // 5. Pour les achats à la carte, rediriger directement
+      if (isOneTime) {
+        window.location.href = checkoutUrl;
+      } else {
+        // Pour les abonnements, afficher la pop-up de confirmation
+        setPendingCheckoutLink(checkoutUrl);
+        setShowSubscriptionConfirmation(true);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la construction de l\'URL de checkout:', error);
+      alert('Une erreur est survenue lors de la préparation de la commande');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-fs-slate-900 to-fs-slate-950 py-12 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-fs-teal-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-fs-slate-900 to-fs-slate-950 py-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="bg-gradient-to-br from-fs-slate-800/90 to-fs-slate-900/90 rounded-2xl p-4 sm:p-8 shadow-xl border border-fs-teal-500/20">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6">Erreur</h1>
+            <p className="text-fs-slate-300 mb-6">{error}</p>
+            <Button onClick={() => window.history.back()} className="w-full bg-fs-teal-500 hover:bg-fs-teal-600">Retour</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!productDetails) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-fs-slate-900 to-fs-slate-950 py-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="bg-gradient-to-br from-fs-slate-800/90 to-fs-slate-900/90 rounded-2xl p-4 sm:p-8 shadow-xl border border-fs-teal-500/20">
+            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6">Produit non trouvé</h1>
+            <p className="text-fs-slate-300 mb-6">Impossible de trouver les détails du produit sélectionné.</p>
+            <Button onClick={() => window.history.back()} className="w-full bg-fs-teal-500 hover:bg-fs-teal-600">Retour</Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-fs-slate-900 to-fs-slate-950 py-12">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-gradient-to-br from-fs-slate-800/90 to-fs-slate-900/90 rounded-2xl p-4 sm:p-8 shadow-xl border border-fs-teal-500/20">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">Récapitulatif de votre commande</h1>
+          
+          <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 bg-fs-slate-900/40 rounded-lg">
+              <div className="mb-3 sm:mb-0">
+                <h2 className="text-xl font-semibold text-white">{planParam}</h2>
+                <p className="text-fs-slate-300">
+                  {isOneTime 
+                    ? `${productDetails.includedTokens} tokens (paiement unique)` 
+                    : `Forfait ${translatePeriod(periodParam || '')}`
+                  }
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-lg font-semibold text-white">{productDetails.price.toFixed(2)}€</p>
+                {!isOneTime && (
+                  <p className="text-sm text-fs-slate-400">{productDetails.includedTokens} tokens inclus</p>
+                )}
+              </div>
+            </div>
+            
+            {/* Afficher cette section uniquement pour les abonnements */}
+            {!isOneTime && (
+              <div className="p-4 bg-fs-slate-900/40 rounded-lg">
+                <h3 className="text-white font-semibold mb-4">Tokens supplémentaires</h3>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {availableTokenOptions.map(option => (
+                    <button
+                      key={option}
+                      onClick={() => setAdditionalTokens(option)}
+                      className={`px-3 py-1.5 rounded-lg text-sm ${
+                        additionalTokens === option
+                          ? 'bg-fs-teal-500 text-white'
+                          : 'bg-fs-slate-800 text-fs-slate-300 hover:bg-fs-slate-700'
+                      } transition-colors`}
+                    >
+                      {option === 0 ? 'Aucun' : `+${option}`}
+                    </button>
+                  ))}
+                </div>
+                
+                {additionalTokens > 0 && (
+                  <div className="flex justify-between items-center p-3 bg-fs-slate-800/60 rounded-lg">
+                    <span className="text-fs-slate-300">{additionalTokens} tokens supplémentaires</span>
+                    <span className="font-semibold text-white">{additionalTokensPrice.toFixed(2)}€</span>
+                  </div>
+                )}
+              </div>
+            )}
+            
+            <div className="p-4 bg-fs-slate-900/40 rounded-lg">
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-fs-slate-300">Sous-total</span>
+                <span className="text-white">{totalPrice.toFixed(2)}€</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-fs-slate-300">TVA incluse</span>
+                <span className="text-fs-slate-400">{(totalPrice * 0.20).toFixed(2)}€</span>
+              </div>
+              {!isOneTime && (
+                <div className="mt-4 pt-3 border-t border-fs-slate-700/60">
+                  <div className="flex justify-between items-center">
+                    <span className="text-fs-slate-300">Prochaine facturation</span>
+                    <span className="text-fs-slate-400">{productDetails.nextBillingDate}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-white">Vos informations</h3>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="firstname" className="block text-sm font-medium text-fs-slate-300 mb-1">Prénom</label>
+                  <Input
+                    id="firstname"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full bg-fs-slate-800 border-fs-slate-700 text-white"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastname" className="block text-sm font-medium text-fs-slate-300 mb-1">Nom</label>
+                  <Input
+                    id="lastname"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-full bg-fs-slate-800 border-fs-slate-700 text-white"
+                    required
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-fs-slate-300 mb-1">Email</label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-fs-slate-800 border-fs-slate-700 text-white"
+                  required
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <h3 className="text-lg font-semibold text-white">Conditions et autorisations</h3>
+              
+              <div className="flex items-start space-x-3">
+                <Checkbox 
+                  id="terms" 
+                  checked={isTermsAccepted}
+                  onCheckedChange={(checked) => setIsTermsAccepted(checked as boolean)}
+                  className="mt-1 bg-fs-slate-800 border-fs-slate-600"
+                  required
+                />
+                <div>
+                  <label htmlFor="terms" className="block text-sm text-fs-slate-300">
+                    J'accepte les <button type="button" onClick={() => setOpenDialog('terms')} className="text-fs-teal-400 hover:underline">conditions d'utilisation</button>, la <button type="button" onClick={() => setOpenDialog('privacy')} className="text-fs-teal-400 hover:underline">politique de confidentialité</button> et les <button type="button" onClick={() => setOpenDialog('refund')} className="text-fs-teal-400 hover:underline">conditions de remboursement</button>.
+                  </label>
+                </div>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <Checkbox 
+                  id="age" 
+                  checked={isAgeVerified}
+                  onCheckedChange={(checked) => setIsAgeVerified(checked as boolean)}
+                  className="mt-1 bg-fs-slate-800 border-fs-slate-600"
+                  required
+                />
+                <label htmlFor="age" className="block text-sm text-fs-slate-300">
+                  Je confirme avoir plus de 18 ans
+                </label>
+              </div>
+              
+              <div className="flex items-start space-x-3">
+                <Checkbox 
+                  id="newsletter" 
+                  checked={isNewsletterAccepted}
+                  onCheckedChange={(checked) => setIsNewsletterAccepted(checked as boolean)}
+                  className="mt-1 bg-fs-slate-800 border-fs-slate-600"
+                />
+                <label htmlFor="newsletter" className="block text-sm text-fs-slate-300">
+                  Je souhaite recevoir des conseils et offres exclusives par email (facultatif)
+                </label>
+              </div>
+            </div>
+            
+            <Button 
+              type="submit" 
+              className="w-full bg-gradient-to-r from-fs-blue-500 to-fs-teal-500 hover:from-fs-blue-600 hover:to-fs-teal-600 text-white font-medium py-3"
+            >
+              Procéder au paiement ({totalPrice.toFixed(2)}€)
+            </Button>
+            
+            <p className="text-center text-sm text-fs-slate-400 mt-4 flex items-center justify-center">
+              <Shield className="h-4 w-4 mr-2 text-fs-teal-500" /> 
+              Paiement sécurisé - vous pouvez annuler à tout moment
+            </p>
+          </form>
+        </div>
+      </div>
+      
+      {/* Dialogs pour les conditions */}
+      <Dialog open={openDialog === 'terms'} onOpenChange={(open) => !open && setOpenDialog(null)}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto bg-fs-slate-900 text-white">
+          <DialogHeader>
+            <DialogTitle>Conditions d'utilisation</DialogTitle>
+          </DialogHeader>
+          {renderLegalContent(termsContent)}
+        </DialogContent>
+      </Dialog>
+      
+      <Dialog open={openDialog === 'privacy'} onOpenChange={(open) => !open && setOpenDialog(null)}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto bg-fs-slate-900 text-white">
+          <DialogHeader>
+            <DialogTitle>Politique de confidentialité</DialogTitle>
+          </DialogHeader>
+          {renderLegalContent(privacyContent)}
+        </DialogContent>
+      </Dialog>
+      
+      <Dialog open={openDialog === 'refund'} onOpenChange={(open) => !open && setOpenDialog(null)}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto bg-fs-slate-900 text-white">
+          <DialogHeader>
+            <DialogTitle>Conditions de remboursement</DialogTitle>
+          </DialogHeader>
+          {renderLegalContent(refundContent)}
+        </DialogContent>
+      </Dialog>
+      
+      {/* Dialog de confirmation pour les abonnements */}
+      <Dialog open={showSubscriptionConfirmation} onOpenChange={setShowSubscriptionConfirmation}>
+        <DialogContent className="bg-fs-slate-900 text-white">
+          <DialogHeader>
+            <DialogTitle>Confirmation d'abonnement</DialogTitle>
+            <DialogDescription className="text-fs-slate-300">
+              Vous allez souscrire un abonnement {translatePeriod(periodParam || '')}
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <p className="text-fs-slate-200">
+              En confirmant, vous autorisez {planParam} à débiter votre moyen de paiement de <strong>{totalPrice.toFixed(2)}€</strong> {periodParam === 'bi-weekly' ? 'toutes les deux semaines' : periodParam === 'monthly' ? 'tous les mois' : periodParam === 'quarterly' ? 'tous les trois mois' : 'tous les ans'} jusqu'à l'annulation.
+            </p>
+            
+            <p className="text-fs-slate-200">
+              Vous pouvez annuler votre abonnement à tout moment depuis votre espace client.
+            </p>
+            
+            <div className="bg-fs-slate-800 p-3 rounded-lg">
+              <div className="flex justify-between items-center">
+                <span>Montant total</span>
+                <span className="font-semibold">{totalPrice.toFixed(2)}€</span>
+              </div>
+              <div className="flex justify-between items-center text-sm text-fs-slate-400">
+                <span>Prochain débit</span>
+                <span>{productDetails.nextBillingDate}</span>
+              </div>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowSubscriptionConfirmation(false)} className="border-fs-slate-600 text-white">
+              Annuler
+            </Button>
+            <Button onClick={proceedToPayment} className="bg-fs-teal-500 hover:bg-fs-teal-600">
+              Confirmer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+export default function PreCheckout() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-fs-slate-900 to-fs-slate-950 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-fs-teal-500"></div>
+      </div>
+    }>
+      <PreCheckoutContent />
+    </Suspense>
+  );
+} 
+} 

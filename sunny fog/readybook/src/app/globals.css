@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme {
+  /* ReadyBook color palette */
+  --color-book-blue-50: #f0f7ff;
+  --color-book-blue-100: #e0f0ff;
+  --color-book-blue-200: #bae0ff;
+  --color-book-blue-300: #7cc5fe;
+  --color-book-blue-400: #47a5fa;
+  --color-book-blue-500: #2886f5;
+  --color-book-blue-600: #1c6dd7;
+  --color-book-blue-700: #1857b2;
+  --color-book-blue-800: #164790;
+  --color-book-blue-900: #183d74;
+
+  --color-book-green-50: #effdf5;
+  --color-book-green-100: #dafbe8;
+  --color-book-green-200: #b8f5d4;
+  --color-book-green-300: #84e8b7;
+  --color-book-green-400: #4ad396;
+  --color-book-green-500: #21b87c;
+  --color-book-green-600: #17a170;
+  --color-book-green-700: #168059;
+  --color-book-green-800: #156549;
+  --color-book-green-900: #11553d;
+  
+  --color-book-yellow-50: #fff9eb;
+  --color-book-yellow-100: #ffefc7;
+  --color-book-yellow-200: #ffe28a;
+  --color-book-yellow-300: #ffcf47;
+  --color-book-yellow-400: #ffbc20;
+  --color-book-yellow-500: #f99f06;
+  --color-book-yellow-600: #dd7f03;
+  --color-book-yellow-700: #b75f07;
+  --color-book-yellow-800: #944a0c;
+  --color-book-yellow-900: #7a3d0f;
+}
+
+body {
+  background: white;
+  color: #333333;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px 0 rgba(40, 134, 245, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(40, 134, 245, 0.6); }
+  100% { box-shadow: 0 0 10px 0 rgba(40, 134, 245, 0.4); }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 15s linear infinite;
+}
+
+/* Gradient text effect - standard CSS implementation */
+.gradient-text {
+  background-image: linear-gradient(to right, #1c6dd7, #21b87c);
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button effects */
+.button-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(40, 134, 245, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Card effects */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #f8fafc;
+  border: 1px solid rgba(40, 134, 245, 0.1);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(40, 134, 245, 0.2);
+  border: 1px solid rgba(40, 134, 245, 0.3);
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(248, 250, 252, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  border: 1px solid rgba(40, 134, 245, 0.15);
+}
+
+/* Responsive typography helpers */
+.responsive-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.responsive-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Legal content styling */
+.prose.prose-invert h1,
+.prose.prose-invert h2,
+.prose.prose-invert h3,
+.prose.prose-invert h4,
+.prose.prose-invert h5,
+.prose.prose-invert h6,
+.prose.prose-invert p,
+.prose.prose-invert ul,
+.prose.prose-invert ol,
+.prose.prose-invert li {
+  color: white !important;
+}
+
+.prose.prose-invert strong {
+  color: white !important;
+  font-weight: 600;
+}
+
+.prose.prose-invert a {
+  color: #8db8ff !important;
+  text-decoration: underline;
+}
+
+/* Utility classes */
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-book-blue-600 to-book-green-500 bg-clip-text text-transparent;
+  }
+}

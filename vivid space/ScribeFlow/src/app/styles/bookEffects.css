@@ -1,0 +1,44 @@
+.perspective {
+  perspective: 1000px;
+}
+
+.book-effect {
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  height: 320px;
+  width: 240px;
+}
+
+.book-sm {
+  height: 260px;
+  width: 200px;
+}
+
+@media (max-width: 640px) {
+  .book-effect {
+    height: 240px;
+    width: 180px;
+  }
+  
+  .book-sm {
+    height: 220px;
+    width: 160px;
+  }
+}
+
+.book-cover {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform: translateZ(10px);
+  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+}
+
+.rotate-y-90 {
+  transform: rotateY(90deg);
+}
+
+.book-effect:hover {
+  transform: rotateY(15deg);
+} 

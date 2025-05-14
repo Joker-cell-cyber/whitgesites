@@ -1,0 +1,370 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* FitnessBrainAI Palette - Minimaliste Pastel */
+    --nrl-lavender: 260 30% 90%;       /* #E2D9F3 - Lavande clair */
+    --nrl-lavender-dark: 260 30% 60%;  /* #A590DC - Lavande foncé */
+    --nrl-mint: 150 25% 85%;           /* #D3E9DD - Menthe claire */
+    --nrl-mint-dark: 150 25% 60%;      /* #8ECCAA - Menthe foncée */
+    --nrl-peach: 25 50% 90%;           /* #FBDDC8 - Pêche clair */
+    --nrl-peach-dark: 25 50% 70%;      /* #F5BA8D - Pêche foncé */
+    --nrl-sky: 200 40% 90%;            /* #D9EBFA - Bleu ciel clair */
+    --nrl-sky-dark: 200 40% 70%;       /* #99CDEF - Bleu ciel foncé */
+    --nrl-cream: 40 30% 97%;           /* #FBFAF6 - Crème */
+    --nrl-warm-gray: 30 10% 92%;       /* #EEEBE7 - Gris chaud */
+    --nrl-charcoal: 220 15% 20%;       /* #2A303D - Charbon */
+
+    /* Shadcn Variables */
+    --background: var(--nrl-cream);
+    --foreground: var(--nrl-charcoal);
+    --card: 0 0% 100%;
+    --card-foreground: var(--nrl-charcoal);
+    --popover: 0 0% 100%;
+    --popover-foreground: var(--nrl-charcoal);
+    --primary: var(--nrl-lavender-dark);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--nrl-warm-gray);
+    --secondary-foreground: var(--nrl-charcoal);
+    --muted: var(--nrl-warm-gray);
+    --muted-foreground: 220 15% 40%;
+    --accent: var(--nrl-peach-dark);
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 15% 85%;
+    --input: 220 15% 90%;
+    --ring: var(--nrl-lavender-dark);
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', 'Helvetica', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', 'Inter', sans-serif;
+    font-weight: 600;
+    @apply tracking-tight;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  .nrl-btn-primary {
+    @apply bg-[#A590DC] text-white rounded-full px-6 py-3 font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:bg-[#8A72CA] hover:translate-y-[-2px];
+  }
+  
+  .nrl-btn-secondary {
+    @apply bg-white text-[#A590DC] border border-[#A590DC] rounded-full px-6 py-3 font-medium transition-all duration-300 hover:bg-[#F5F2FC] hover:translate-y-[-2px];
+  }
+  
+  .nrl-btn-accent {
+    @apply bg-[#F5BA8D] text-white rounded-full px-6 py-3 font-medium transition-all duration-300 shadow-sm hover:shadow-md hover:bg-[#F2A979] hover:translate-y-[-2px];
+  }
+  
+  .nrl-card {
+    @apply bg-white rounded-2xl border border-[#EEEBE7] p-6 shadow-sm hover:shadow-md transition-all duration-300;
+  }
+  
+  .nrl-card-accent {
+    @apply bg-[#F5F2FC] rounded-2xl border border-[#E2D9F3] p-6;
+  }
+  
+  .nrl-card-pastel {
+    @apply rounded-2xl border-0 p-6;
+  }
+  
+  .nrl-card-lavender {
+    @apply bg-[#F5F2FC] nrl-card-pastel;
+  }
+  
+  .nrl-card-mint {
+    @apply bg-[#E9F5EE] nrl-card-pastel;
+  }
+  
+  .nrl-card-peach {
+    @apply bg-[#FFF0E6] nrl-card-pastel;
+  }
+  
+  .nrl-card-sky {
+    @apply bg-[#EEF6FD] nrl-card-pastel;
+  }
+  
+  .nrl-input {
+    @apply bg-white border border-[#EEEBE7] rounded-lg px-4 py-3 text-[#2A303D] focus:ring-2 focus:ring-[#A590DC] focus:border-transparent;
+  }
+  
+  .nrl-section {
+    @apply py-20;
+  }
+  
+  .nrl-heading {
+    @apply text-[#2A303D] font-semibold;
+  }
+  
+  .nrl-text-primary {
+    @apply text-[#A590DC];
+  }
+  
+  .nrl-text-accent {
+    @apply text-[#F5BA8D];
+  }
+  
+  .nrl-gradient-bg {
+    @apply bg-gradient-to-r from-[#E2D9F3] via-[#FBFAF6] to-[#D9EBFA];
+  }
+  
+  .nrl-pastel-dot-pattern {
+    background-image: radial-gradient(circle, #E2D9F3 1px, transparent 1px), 
+                     radial-gradient(circle, #D3E9DD 1px, transparent 1px),
+                     radial-gradient(circle, #FBDDC8 1px, transparent 1px),
+                     radial-gradient(circle, #D9EBFA 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 10px, 10px 20px, 30px 30px;
+    opacity: 0.3;
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s forwards;
+  }
+  
+  .animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out forwards;
+  }
+  
+  .animate-draw-line-delay {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 1s forwards;
+  }
+  
+  .animate-draw-line-delay-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 2s forwards;
+  }
+  
+  .animate-draw-line-delay-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 3s forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+
+  .animate-fade-in-down {
+    animation: fade-in-down 1s ease-out forwards;
+  }
+
+  .hero-glow {
+    @apply absolute pointer-events-none inset-0 overflow-hidden;
+    background: radial-gradient(circle at center, rgba(165, 144, 220, 0.1) 0%, transparent 70%);
+    z-index: 0;
+  }
+  
+  .border-gradient {
+    position: relative;
+    border-radius: 1rem;
+    background: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255)) padding-box,
+                linear-gradient(to right, rgb(165, 144, 220), rgb(245, 186, 141)) border-box;
+    border: 1px solid transparent;
+  }
+  
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl border border-[#EEEBE7]/80 shadow-sm;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 ease-out hover:translate-y-[-4px] hover:shadow-lg;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(165, 144, 220, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(165, 144, 220, 0.5);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animate-text-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Personnalisation du scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nrl-warm-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--nrl-lavender);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--nrl-lavender-dark);
+}
+
+::selection {
+  background: var(--nrl-lavender);
+  color: white;
+}
+
+/* Assurer que les boutons et les liens sont cliquables */
+button, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Améliorer la réactivité des éléments interactifs */
+button:active, a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+/* Assurer que les éléments de la FAQ sont cliquables */
+#faq button {
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}

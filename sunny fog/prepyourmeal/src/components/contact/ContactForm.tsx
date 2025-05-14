@@ -1,0 +1,168 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    planType: "starter",
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      // Here you would connect this to your actual form submission API
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      setSubmitStatus("success");
+      // Reset the form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        planType: "starter",
+      });
+    } catch (error) {
+      setSubmitStatus("error");
+      console.error("Form submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-white border border-gray-200 rounded-lg shadow-lg p-8"
+    >
+      <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-nutrition-green-500 to-carrot-500 mb-6">Send Us a Message</h2>
+      
+      {submitStatus === "success" && (
+        <div className="mb-6 p-4 bg-nutrition-green-100 text-nutrition-green-700 border border-nutrition-green-300 rounded-md">
+          Thank you! Your message has been sent successfully. We&apos;ll get back to you soon.
+        </div>
+      )}
+      
+      {submitStatus === "error" && (
+        <div className="mb-6 p-4 bg-red-100 text-red-700 border border-red-300 rounded-md">
+          There was an error sending your message. Please try again later.
+        </div>
+      )}
+      
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-800 rounded-md focus:ring-2 focus:ring-nutrition-green-500 focus:border-nutrition-green-500"
+              placeholder="Your name"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-800 rounded-md focus:ring-2 focus:ring-nutrition-green-500 focus:border-nutrition-green-500"
+              placeholder="your.email@example.com"
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
+            Subject
+          </label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-800 rounded-md focus:ring-2 focus:ring-nutrition-green-500 focus:border-nutrition-green-500"
+            placeholder="What is your message about?"
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="planType" className="block text-sm font-medium text-gray-700 mb-1">
+            Meal Plan Type
+          </label>
+          <select
+            id="planType"
+            name="planType"
+            value={formData.planType}
+            onChange={handleChange}
+            className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-800 rounded-md focus:ring-2 focus:ring-nutrition-green-500 focus:border-nutrition-green-500"
+          >
+            <option value="starter">Starter Packs</option>
+            <option value="standard">Standard Packs</option>
+            <option value="complete">Complete Packs</option>
+            <option value="custom">Custom Plan</option>
+          </select>
+        </div>
+        
+        <div>
+          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            rows={6}
+            className="w-full px-4 py-2 bg-white border border-gray-300 text-gray-800 rounded-md focus:ring-2 focus:ring-nutrition-green-500 focus:border-nutrition-green-500"
+            placeholder="Tell us about your question or request"
+          />
+        </div>
+        
+        <div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`w-full px-6 py-3 text-white font-medium rounded-md shadow-sm ${
+              isSubmitting ? "bg-nutrition-green-700" : "bg-gradient-to-r from-nutrition-green-600 to-carrot-500 hover:from-nutrition-green-700 hover:to-carrot-600 button-glow"
+            } focus:outline-none focus:ring-2 focus:ring-nutrition-green-500 focus:ring-offset-2 transition-colors duration-200`}
+          >
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </button>
+        </div>
+      </form>
+    </motion.div>
+  );
+} 

@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  /* VividScript branding color palette - Updated for Vivid Space */
+  --color-vid-blue-50: #f0f9ff;
+  --color-vid-blue-100: #e0f2fe;
+  --color-vid-blue-200: #bae6fd;
+  --color-vid-blue-300: #7dd3fc;
+  --color-vid-blue-400: #38bdf8;
+  --color-vid-blue-500: #0ea5e9;
+  --color-vid-blue-600: #0284c7;
+  --color-vid-blue-700: #0369a1;
+  --color-vid-blue-800: #075985;
+  --color-vid-blue-900: #0c4a6e;
+
+  --color-vid-white-50: #ffffff;
+  --color-vid-white-100: #F8FAFC;
+  --color-vid-white-200: #f1f5f9;
+  --color-vid-white-300: #e2e8f0;
+  --color-vid-white-400: #cbd5e1;
+  --color-vid-white-500: #94a3b8;
+  --color-vid-white-600: #64748b;
+  --color-vid-white-700: #475569;
+  --color-vid-white-800: #334155;
+  --color-vid-white-900: #1e293b;
+  
+  /* Accent colors - Updated */
+  --color-accent: #8b5cf6;
+  --color-accent-hover: #7c3aed;
+  
+  /* Base colors */
+  --color-background: #F8FAFC;
+  --color-foreground: #0c4a6e;
+  --color-card-bg: #FFFFFF;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 10px 0 rgba(56, 189, 248, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(56, 189, 248, 0.6); }
+  100% { box-shadow: 0 0 10px 0 rgba(56, 189, 248, 0.4); }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 15s linear infinite;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  @apply bg-gradient-to-r from-vid-blue-500 to-violet-600 bg-clip-text text-transparent;
+}
+
+/* Button effects */
+.button-glow {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.button-glow:hover {
+  box-shadow: 0 0 15px 5px rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Card effects */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--color-card-bg);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* Glass effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+/* Responsive typography helpers */
+.responsive-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  font-family: var(--font-montserrat);
+}
+
+.responsive-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* Typography classes */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+}
+
+.heading-font {
+  font-family: var(--font-montserrat);
+}
+
+.body-font {
+  font-family: var(--font-inter);
+}

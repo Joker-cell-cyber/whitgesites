@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Adfinity Palette - Terre & Nature */
+    --adf-earth-dark: 35 25% 25%;      /* #4F4639 - Brun foncé */
+    --adf-earth-medium: 35 25% 40%;    /* #7F7259 - Brun moyen */
+    --adf-earth-light: 35 25% 90%;     /* #F0EBE1 - Beige clair */
+    --adf-olive: 85 30% 35%;           /* #5F7138 - Vert olive */
+    --adf-olive-light: 85 20% 80%;     /* #D9DEC9 - Vert olive clair */
+    --adf-terracotta: 20 45% 55%;      /* #C17A56 - Terracotta */
+    --adf-cream: 40 30% 95%;           /* #F8F4E9 - Crème */
+    --adf-sand: 40 25% 85%;            /* #E8DFC7 - Sable */
+
+    /* Shadcn Variables */
+    --background: var(--adf-earth-light);
+    --foreground: var(--adf-earth-dark);
+    --card: var(--adf-cream);
+    --card-foreground: var(--adf-earth-dark);
+    --popover: var(--adf-cream);
+    --popover-foreground: var(--adf-earth-dark);
+    --primary: var(--adf-olive);
+    --primary-foreground: var(--adf-cream);
+    --secondary: var(--adf-sand);
+    --secondary-foreground: var(--adf-earth-medium);
+    --muted: var(--adf-olive-light);
+    --muted-foreground: var(--adf-earth-medium);
+    --accent: var(--adf-terracotta);
+    --accent-foreground: var(--adf-cream);
+    --destructive: 0 60% 45%;
+    --destructive-foreground: var(--adf-cream);
+    --border: var(--adf-earth-medium);
+    --input: var(--adf-sand);
+    --ring: var(--adf-olive);
+    --radius: 0.75rem;
+    --chart-1: var(--adf-olive);
+    --chart-2: var(--adf-terracotta);
+    --chart-3: var(--adf-earth-medium);
+    --chart-4: var(--adf-sand);
+    --chart-5: var(--adf-olive-light);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Lora', Georgia, serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Lora', serif;
+  }
+  p, ul, ol, li {
+    font-family: 'Source Sans Pro', 'Open Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .adf-btn-primary {
+    @apply bg-[#5F7138] hover:bg-[#4D5C2E] text-[#F8F4E9] border-2 border-[#5F7138] rounded-lg px-6 py-3 font-medium transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .adf-btn-secondary {
+    @apply bg-[#F8F4E9] text-[#5F7138] border-2 border-[#5F7138] rounded-lg px-6 py-3 font-medium transition-all duration-300 hover:bg-[#E8DFC7];
+  }
+  
+  .adf-card {
+    @apply bg-[#F8F4E9] border border-[#E8DFC7] rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300;
+  }
+  
+  .adf-input {
+    @apply bg-[#F0EBE1] border border-[#E8DFC7] rounded-lg px-4 py-3 text-[#4F4639] focus:ring-2 focus:ring-[#5F7138] focus:border-transparent;
+  }
+  
+  .adf-section {
+    @apply py-16 border-b border-[#E8DFC7];
+  }
+  
+  .adf-heading {
+    @apply text-[#4F4639] font-bold;
+  }
+  
+  .adf-text-primary {
+    @apply text-[#5F7138];
+  }
+  
+  .adf-text-accent {
+    @apply text-[#C17A56];
+  }
+  
+  .adf-gradient-bg {
+    @apply bg-gradient-to-br from-[#F0EBE1] via-[#F8F4E9] to-[#E8DFC7];
+  }
+  
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 6s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 1.5s forwards;
+  }
+  
+  .animate-draw-line {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out forwards;
+  }
+  
+  .animate-draw-line-delay {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 1s forwards;
+  }
+  
+  .animate-draw-line-delay-2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 2s forwards;
+  }
+  
+  .animate-draw-line-delay-3 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-line 10s ease-in-out 3s forwards;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes draw-line {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(95, 113, 56, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(95, 113, 56, 0.6);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Assurer que les boutons et les liens sont cliquables */
+button, a {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Améliorer la réactivité des éléments interactifs */
+button:active, a:active {
+  transform: scale(0.98);
+  transition: transform 0.1s;
+}
+
+/* Assurer que les éléments de la FAQ sont cliquables */
+#faq button {
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+}
+
+/* Personnalisation du scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--adf-olive-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--adf-earth-medium);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--adf-olive);
+}

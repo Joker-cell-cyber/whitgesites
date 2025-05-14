@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  /* SolidCraft color palette */
+  --color-terracotta-50: #fdf3f1;
+  --color-terracotta-100: #fbe3df;
+  --color-terracotta-200: #f7c9c1;
+  --color-terracotta-300: #f1a695;
+  --color-terracotta-400: #e87d66;
+  --color-terracotta-500: #e05e41;
+  --color-terracotta-600: #c35a38;
+  --color-terracotta-700: #a2482d;
+  --color-terracotta-800: #873d28;
+  --color-terracotta-900: #723627;
+
+  --color-teal-50: #f0f9fa;
+  --color-teal-100: #d0f0f3;
+  --color-teal-200: #a3e0e6;
+  --color-teal-300: #6cc8d2;
+  --color-teal-400: #39aab7;
+  --color-teal-500: #1d8d9a;
+  --color-teal-600: #0d7682;
+  --color-teal-700: #095e6e;
+  --color-teal-800: #084a56;
+  --color-teal-900: #073d47;
+  
+  /* Base colors */
+  --color-background: #fff8e9;
+  --color-foreground: #3b332b;
+  --color-card-bg: #fffdf7;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes draw-line {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-draw-line {
+  animation: draw-line 1.5s ease-out forwards;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(120deg, rgb(var(--solidcraft-terra)), rgb(var(--solidcraft-gold)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button effects */
+.button-glow {
+  box-shadow: 0 4px 12px rgba(var(--solidcraft-terra), 0.25);
+  transition: all 0.3s ease;
+}
+
+.button-glow:hover {
+  box-shadow: 0 6px 18px rgba(var(--solidcraft-terra), 0.4);
+  transform: translateY(-2px);
+}
+
+/* Card effects */
+.card-hover {
+  background: rgba(255, 253, 247, 0.9);
+  border: 1px solid rgba(var(--solidcraft-terra), 0.1);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--solidcraft-terra), 0.3);
+  box-shadow: 0 10px 25px -5px rgba(var(--solidcraft-terra), 0.15);
+}
+
+/* Clay effect */
+.clay-effect {
+  background: var(--color-card-bg);
+  border-radius: 1rem;
+  box-shadow: 
+    6px 6px 12px rgba(var(--solidcraft-terra), 0.08),
+    -6px -6px 12px rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive typography helpers */
+.responsive-heading {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  font-family: 'Fraunces', serif;
+}
+
+.responsive-subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+:root {
+  --foreground-rgb: 59, 51, 43;
+  --background-start-rgb: 255, 248, 233;
+  --background-end-rgb: 255, 248, 233;
+  
+  /* New brand colors for landing page builder */
+  --solidcraft-terra: 195, 90, 56;
+  --solidcraft-teal: 9, 94, 110;
+  --solidcraft-gold: 255, 183, 94;
+  --solidcraft-cream: 255, 248, 233;
+  --solidcraft-brown: 59, 51, 43;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0) scaleX(1.05) scaleY(0.95);
+  }
+  50% {
+    transform: translateY(-6px) scaleX(0.95) scaleY(1.05);
+  }
+}
+
+.animate-wave {
+  animation: wave 8s ease-in-out infinite;
+}
+
+.shape-blob {
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+}
+
+.shape-wave {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+

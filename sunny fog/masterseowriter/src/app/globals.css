@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  /* Turquoise color palette */
+  --color-turquoise-50: #ebfcfc;
+  --color-turquoise-100: #d1f6f5;
+  --color-turquoise-200: #9eecea;
+  --color-turquoise-300: #68e0db;
+  --color-turquoise-400: #2fcbc4;
+  --color-turquoise-500: #0db5b4;
+  --color-turquoise-600: #089696;
+  --color-turquoise-700: #0a7878;
+  --color-turquoise-800: #0c5f5f;
+  --color-turquoise-900: #0d4b4b;
+  
+  /* Base colors */
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Additional custom styles can go here */

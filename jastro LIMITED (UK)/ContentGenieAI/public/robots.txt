@@ -1,0 +1,32 @@
+# Interdire l'indexation du site par tous les robots
+User-agent: *
+Disallow: /
+
+# Interdire spécifiquement les robots les plus courants
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: Sogou
+Disallow: /
+
+User-agent: Exabot
+Disallow: /
+
+# Interdire l'archivage
+User-agent: ia_archiver
+Disallow: / 

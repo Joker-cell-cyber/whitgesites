@@ -1,0 +1,282 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+// Define the type for pricing plans
+interface PricingPlan {
+  name: string;
+  price: number;
+  description: string;
+  features: string[];
+  delivery: string;
+  popular?: boolean;
+}
+
+export default function PricingSection() {
+  // Define 12 pricing tiers from $9.90 to $119.90
+  const pricingPlans = [
+    {
+      name: "Starter",
+      price: 9.99,
+      description: "Perfect for beginners who need a simple personal Notion workspace",
+      features: [
+        "Personal dashboard",
+        "Basic note organization",
+        "Simple task management",
+        "1 template included"
+      ],
+      delivery: "48 hours"
+    },
+    {
+      name: "Basic",
+      price: 19.50,
+      description: "Essential Notion setup for personal productivity and organization",
+      features: [
+        "Custom home dashboard",
+        "Note-taking system",
+        "Task & project tracking",
+        "3 templates included"
+      ],
+      delivery: "48 hours",
+      popular: true
+    },
+    {
+      name: "Standard",
+      price: 29.90,
+      description: "Comprehensive personal system with integrated workflows",
+      features: [
+        "Advanced dashboard setup",
+        "Connected databases",
+        "Custom note templates",
+        "5 templates included"
+      ],
+      delivery: "72 hours"
+    },
+    {
+      name: "Plus",
+      price: 39.99,
+      description: "Enhanced personal workspace with advanced organization",
+      features: [
+        "Multi-database integrations",
+        "Custom relation structures",
+        "Progress tracking",
+        "7 templates included"
+      ],
+      delivery: "72 hours"
+    },
+    {
+      name: "Premium",
+      price: 49.90,
+      description: "Feature-rich personal system for maximum productivity",
+      features: [
+        "Advanced filtering systems",
+        "Custom formula creation",
+        "Habit & goal tracking",
+        "10 templates included"
+      ],
+      delivery: "96 hours"
+    },
+    {
+      name: "Team Starter",
+      price: 59.50,
+      description: "Basic workspace setup for small teams up to 5 people",
+      features: [
+        "Team home dashboard",
+        "Shared database setup",
+        "Basic team wiki",
+        "3 team templates"
+      ],
+      delivery: "4 days"
+    },
+    {
+      name: "Team Standard",
+      price: 69.99,
+      description: "Collaborative workspace for teams up to 10 people",
+      features: [
+        "Team directory",
+        "Project management system",
+        "Meeting note templates",
+        "5 team templates"
+      ],
+      delivery: "5 days",
+      popular: true
+    },
+    {
+      name: "Team Plus",
+      price: 79.90,
+      description: "Enhanced team workspace with advanced collaboration features",
+      features: [
+        "Comprehensive wiki system",
+        "Task assignment workflows",
+        "Document management",
+        "7 team templates"
+      ],
+      delivery: "6 days"
+    },
+    {
+      name: "Business Starter",
+      price: 89.50,
+      description: "Basic business operations workspace for small businesses",
+      features: [
+        "Client management system",
+        "Project tracking",
+        "Basic invoice tracking",
+        "Standard operating procedures"
+      ],
+      delivery: "7 days"
+    },
+    {
+      name: "Business Standard",
+      price: 99.99,
+      description: "Comprehensive business management system",
+      features: [
+        "CRM with client portal",
+        "Project & resource management",
+        "Invoice & payment tracking",
+        "Business metrics dashboard"
+      ],
+      delivery: "8 days"
+    },
+    {
+      name: "Business Plus",
+      price: 109.90,
+      description: "Advanced business workspace with integrated workflows",
+      features: [
+        "Full business operations system",
+        "Automated workflows",
+        "Financial tracking tools",
+        "Employee onboarding system"
+      ],
+      delivery: "9 days"
+    },
+    {
+      name: "Enterprise",
+      price: 119.50,
+      description: "Complete enterprise solution for complex organizations",
+      features: [
+        "Multi-department integration",
+        "Enterprise knowledge management",
+        "Advanced automation workflows",
+        "Custom data visualization"
+      ],
+      delivery: "10 days",
+      popular: true
+    }
+  ];
+
+  // Helper function to create checkout URL with product details
+  const createCheckoutUrl = (plan: PricingPlan) => {
+    const params = new URLSearchParams({
+      name: plan.name,
+      price: plan.price.toString(),
+      description: plan.description,
+      category: plan.name.includes("Team") ? "Team" : 
+                plan.name.includes("Business") || plan.name.includes("Enterprise") ? "Business" : "Personal"
+    });
+    
+    return `/checkout?${params.toString()}`;
+  };
+
+  return (
+    <section className="py-20 relative overflow-hidden bg-gradient-to-br from-gray-900 to-black text-white" id="pricing">
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-repeat opacity-10"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 opacity-20 blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-r from-fuchsia-600 to-pink-600 opacity-20 blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Simple <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500">Pricing</span>
+            </h2>
+            <p className="text-gray-300 text-lg">
+              Choose the perfect package for your Notion workspace needs
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {pricingPlans.map((plan, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              className={`rounded-2xl overflow-hidden relative bg-gradient-to-br from-gray-800/70 to-black/70 backdrop-blur-sm border border-gray-800 shadow-xl shadow-indigo-500/5 ${
+                plan.popular ? 'border-indigo-500/50' : ''
+              }`}
+            >
+              {plan.popular && (
+                <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center text-xs py-1 font-medium">
+                  MOST POPULAR
+                </div>
+              )}
+              
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-white">{plan.name}</h3>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-white">${plan.price.toFixed(2)}</div>
+                    <div className="text-sm text-gray-400">one-time</div>
+                  </div>
+                </div>
+                
+                <p className="text-gray-400 text-sm mb-5">
+                  {plan.description}
+                </p>
+                
+                <ul className="space-y-2 mb-6">
+                  {plan.features.map((feature, fidx) => (
+                    <li key={fidx} className="flex items-start text-sm">
+                      <svg className="h-5 w-5 text-indigo-400 mt-0.5 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-gray-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="text-sm flex items-center justify-between mb-6 pb-6 border-t border-gray-700/50 pt-4">
+                  <div className="flex items-center">
+                    <svg className="h-5 w-5 text-indigo-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-gray-300">Delivery in {plan.delivery}</span>
+                  </div>
+                </div>
+                
+                <a 
+                  href={createCheckoutUrl(plan)}
+                  className="block text-center py-3 px-4 rounded-xl font-medium bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg hover:shadow-indigo-500/30 transition-all"
+                >
+                  Choose Plan
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        
+        <div className="mt-16 text-center">
+          <a 
+            href="/pricing" 
+            className="inline-flex items-center px-8 py-4 rounded-full font-medium bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:shadow-lg hover:shadow-indigo-500/30 transition-all duration-300"
+          >
+            View All Plans
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+} 
