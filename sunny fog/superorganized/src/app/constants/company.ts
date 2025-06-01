@@ -5,6 +5,6 @@ export const COMPANY = {
   phone: "(480) 852-2213",
   ein: "33-3564610",
   website: "super-organized.com",
-  serviceName: "Super-Organized",
+  serviceName: "SuperOrganized",
   descriptor: "SuperOrganized"
 }; 

@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import LegalPopup from "../ui/LegalPopup";
 import LegalContent from "@/app/legal/LegalContent";
 import { COMPANY } from "@/app/constants/company";
 
 export default function Footer() {
-  const [activePopup, setActivePopup] = useState<'terms' | 'privacy' | 'cookies' | null>(null);
+  const [activePopup, setActivePopup] = useState<'terms' | 'privacy' | 'cookies' | 'refund' | null>(null);
 
   // Function to open a popup
-  const openPopup = (popupType: 'terms' | 'privacy' | 'cookies') => {
+  const openPopup = (popupType: 'terms' | 'privacy' | 'cookies' | 'refund') => {
     setActivePopup(popupType);
   };
 
@@ -86,6 +87,14 @@ export default function Footer() {
                   Cookie Policy
                 </button>
               </li>
+              <li>
+                <button 
+                  onClick={() => openPopup('refund')} 
+                  className="text-gray-600 hover:text-black transition-colors"
+                >
+                  Refund Policy
+                </button>
+              </li>
             </ul>
           </div>
           
@@ -119,6 +128,12 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500">
+          <div className="flex justify-center mb-4 space-x-4">
+            <Image src="/images/card-logos/visa.svg" alt="Visa" width={40} height={30} className="h-6 w-auto" />
+            <Image src="/images/card-logos/mastercard.svg" alt="Mastercard" width={40} height={30} className="h-6 w-auto" />
+            <Image src="/images/card-logos/amex.svg" alt="American Express" width={40} height={30} className="h-6 w-auto" />
+            <Image src="/images/card-logos/discover.svg" alt="Discover" width={40} height={30} className="h-6 w-auto" />
+          </div>
           <p>© {new Date().getFullYear()} {COMPANY.serviceName}. All rights reserved.</p>
           <p className="text-gray-400 text-xs mt-2">
             {COMPANY.serviceName} is a service of {COMPANY.name}<br />
@@ -153,6 +168,15 @@ export default function Footer() {
         title="Cookie Policy"
       >
         <LegalContent type="cookies" />
+      </LegalPopup>
+
+      {/* Refund Policy Popup */}
+      <LegalPopup 
+        isOpen={activePopup === 'refund'} 
+        onClose={closePopup} 
+        title="Refund Policy"
+      >
+        <LegalContent type="refund" />
       </LegalPopup>
     </footer>
   );

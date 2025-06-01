@@ -2,12 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { termsContent } from '../../legal/terms/terms-content';
 import { privacyContent } from '../../legal/privacy/privacy-content';
 import { cookiesContent } from '../../legal/cookies/cookies-content';
+import { refundContent } from '../../legal/refund/refund-content';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const type = searchParams.get('type');
 
-  if (!type || (type !== 'terms' && type !== 'privacy' && type !== 'cookies')) {
+  if (!type || (type !== 'terms' && type !== 'privacy' && type !== 'cookies' && type !== 'refund')) {
     return NextResponse.json(
       { error: 'Invalid content type requested' }, 
       { status: 400 }
@@ -19,8 +20,10 @@ export async function GET(request: NextRequest) {
     content = termsContent;
   } else if (type === 'privacy') {
     content = privacyContent;
-  } else {
+  } else if (type === 'cookies') {
     content = cookiesContent;
+  } else if (type === 'refund') {
+    content = refundContent;
   }
 
   return NextResponse.json({ content });

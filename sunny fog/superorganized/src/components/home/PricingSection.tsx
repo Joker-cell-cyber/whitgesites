@@ -168,7 +168,7 @@ export default function PricingSection() {
   const createCheckoutUrl = (plan: PricingPlan) => {
     const params = new URLSearchParams({
       name: plan.name,
-      price: plan.price.toString(),
+      price: plan.price.toFixed(2),
       description: plan.description,
       category: plan.name.includes("Team") ? "Team" : 
                 plan.name.includes("Business") || plan.name.includes("Enterprise") ? "Business" : "Personal"

@@ -179,7 +179,7 @@ export default function PricingTabs() {
   const createCheckoutUrl = (plan: PricingPlan) => {
     const params = new URLSearchParams({
       name: plan.name,
-      price: plan.price.toString(),
+      price: plan.price.toFixed(2),
       description: plan.description,
       category: selectedCategory
     });

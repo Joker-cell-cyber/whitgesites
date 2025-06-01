@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 interface LegalContentProps {
-  type: 'terms' | 'privacy' | 'cookies';
+  type: 'terms' | 'privacy' | 'cookies' | 'refund';
 }
 
 const LegalContent = ({ type }: LegalContentProps) => {
